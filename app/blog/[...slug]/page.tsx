@@ -46,14 +46,14 @@ export default async function PostPage({
   return (
     <main className="max-w-6xl mx-auto px-6 py-10">
       <div className="flex gap-10">
-                {/* TOC */}
-                <TOC headings={headings} />
+        {/* TOC */}
+        <TOC headings={headings} />
         {/* 正文 */}
         <article className="prose prose-lg max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[
-              rehypeHighlight, 
+              rehypeHighlight,
               rehypeSlug,
               rehypeAutolinkHeadings,
             ]}

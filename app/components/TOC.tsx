@@ -2,7 +2,11 @@
 
 import { useActiveHeading } from "../hooks/useActiveHeading";
 
-export default function TOC({ headings }) {
+interface TOCProps {
+  headings: Array<{ id: string; text: string; level: number }>; 
+}
+
+export default function TOC({ headings } : TOCProps) {
   const activeId = useActiveHeading(headings);
 
   return (

@@ -2,7 +2,14 @@
 
 import { useEffect, useState } from "react";
 
-export function useActiveHeading(headings) {
+export interface Heading {
+  id: string;
+  text: string;
+  level: number;
+  // 根据实际使用的属性添加
+}
+
+export function useActiveHeading(headings: Heading[]) {
   const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
