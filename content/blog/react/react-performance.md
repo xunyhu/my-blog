@@ -1,7 +1,9 @@
 ---
-title: React 性能优化总结
-date: 2026-03-17
-desc: 面试高频优化点整理
+title: "React 性能优化"
+date: "2026-03-17"
+category: "react"
+tags: ["React", "性能优化"]
+description: "..."
 ---
 
 # React 性能优化

@@ -1,100 +1,73 @@
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts, getAllCategories, getAllTags } from "@/lib/blog";
 import Link from "next/link";
 
-export default async function HomePage() {
+export default async function HomePage({
+  searchParams,
+}: { searchParams: Promise<{ category?: string, tag?: string }> }) {
   const posts = getAllPosts();
-
-  // 分类颜色映射
-  const categoryColor: Record<string, string> = {
-    "html-css": "bg-yellow-100 text-yellow-800",
-    javascript: "bg-green-100 text-green-800",
-    typescript: "bg-blue-100 text-blue-800",
-    react: "bg-purple-100 text-purple-800",
-    vue: "bg-green-200 text-green-900",
-    algorithms: "bg-red-100 text-red-800",
-    "project-experience": "bg-pink-100 text-pink-800",
-    blog: "bg-gray-100 text-gray-800",
-  };
-
-  // 分区
-  const knowledgePosts = posts.filter(
-    (post) => post.category !== "project-experience"
-  );
-  const projectPosts = posts.filter(
-    (post) => post.category === "project-experience"
-  );
+  const categories = getAllCategories();
+  const params = await searchParams;
+  const currentCategory = params.category || "all";
+  const tags = getAllTags();
+  const currentTag = params.tag || "all";
+  const filteredPosts =
+    currentTag === "all"
+      ? posts
+      : posts.filter((p) => p.tags.includes(currentTag));
 
   return (
     <main className="p-8 max-w-7xl mx-auto">
-      {/* Hero 区块 */}
-      <section className="text-center mb-12">
-        <h1 className="text-5xl font-bold mb-4">胡瑞的博客</h1>
-        <p className="text-gray-600 dark:text-gray-300 text-lg">
-          系统整理前端基础知识 + 项目经验 + Demo
-        </p>
+      {/* Hero */}
+      <section className="text-center mb-10">
+        <h1 className="text-4xl font-bold mb-2">前端知识体系博客</h1>
+        <p className="text-gray-500">知识 + 项目经验沉淀</p>
       </section>
 
-      {/* 知识体系文章 */}
-      <section className="mb-12">
-        <h2 className="text-3xl font-semibold mb-6">知识体系</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {knowledgePosts.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition-transform transform hover:-translate-y-1"
-            >
-              <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
-              <p className="text-sm text-gray-500 mb-2">
-                {new Date(post.date).toLocaleDateString()}
-              </p>
-              <p className="text-gray-700 dark:text-gray-300 mb-2">
-                {post.description}
-              </p>
-              {post.category && (
-                <span
-                  className={`inline-block mt-2 text-xs px-2 py-1 rounded ${
-                    categoryColor[post.category] || "bg-gray-100 text-gray-800"
-                  }`}
-                >
-                  {post.category}
-                </span>
-              )}
-            </Link>
-          ))}
-        </div>
-      </section>
+      {/* 分类菜单 */}
+      <div className="flex flex-wrap gap-3 mb-8 justify-center">
+        {tags.map((tag) => (
+          <Link
+            key={tag}
+            href={tag === "all" ? "/" : `/?tag=${tag}`}
+            className={`px-3 py-1 text-sm rounded-full border transition
+        ${currentTag === tag
+                ? "bg-blue-600 text-white"
+                : "bg-white text-gray-700 hover:bg-gray-100"
+              }`}
+          >
+            {tag}
+          </Link>
+        ))}
+      </div>
 
-      {/* 项目经验文章 */}
-      {projectPosts.length > 0 && (
-        <section className="mb-12">
-          <h2 className="text-3xl font-semibold mb-6">项目经验</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projectPosts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition-transform transform hover:-translate-y-1"
-              >
-                <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
-                <p className="text-sm text-gray-500 mb-2">
-                  {new Date(post.date).toLocaleDateString()}
-                </p>
-                <p className="text-gray-700 dark:text-gray-300 mb-2">
-                  {post.description}
-                </p>
+      {/* 文章列表 */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredPosts.map((post) => (
+          <Link
+            key={post.slug}
+            href={`/blog/${post.slug}`}
+            className="block p-5 bg-white rounded-lg shadow hover:shadow-md transition"
+          >
+            <h3 className="text-lg font-semibold mb-2">{post.title}</h3>
+            <p className="text-xs text-gray-400 mb-2">
+              {new Date(post.date).toLocaleDateString()}
+            </p>
+            <p className="text-sm text-gray-600 line-clamp-2">
+              {post.description}
+            </p>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {post.tags.map((tag: string) => (
                 <span
-                  className={`inline-block mt-2 text-xs px-2 py-1 rounded ${
-                    categoryColor["project-experience"]
-                  }`}
+                  key={tag}
+                  className="text-xs bg-gray-100 px-2 py-1 rounded"
                 >
-                  项目经验
+                  {tag}
                 </span>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+              ))}
+            </div>
+          </Link>
+        ))}
+      </div>
     </main>
   );
 }

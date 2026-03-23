@@ -38,11 +38,31 @@ export function getAllPosts() {
     return {
       slug,
       title: data.title,
-      date,
+      date: date.toISOString(),
       description: data.description || data.desc || "",
       category: data.category || "blog",
+      tags: data.tags || [],
     };
   });
 
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+
+export function getAllCategories() {
+  const posts = getAllPosts();
+  const categories = new Set(posts.map((p) => p.category));
+  return ["All", ...Array.from(categories)];
+}
+
+export function getAllTags() {
+  const posts = getAllPosts();
+  const tagSet = new Set<string>();
+
+  posts.forEach((post) => {
+    post.tags.forEach((tag: string) => {
+      tagSet.add(tag);
+    });
+  });
+
+  return ["All", ...Array.from(tagSet)];
 }
