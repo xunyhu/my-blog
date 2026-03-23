@@ -1,9 +1,3 @@
-
----
-
-### **html-css/responsive-design.md**
-
-```markdown
 ---
 title: "响应式设计"
 date: "2026-03-17"

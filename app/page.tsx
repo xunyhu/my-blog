@@ -50,7 +50,7 @@ export default async function HomePage({
         {tags.map((tag) => (
           <Link
             key={tag}
-            href={tag === "All" ? "/" : `/?tag=${tag}`}
+            href={tag === "all" ? "/" : `/?tag=${tag}`}
             className={`px-3 py-1 text-sm rounded-full border transition
               ${currentTag === tag
                 ? "bg-blue-600 text-white"

@@ -1,9 +1,3 @@
-
----
-
-### **vue/vue-reactive.md**
-
-```markdown
 ---
 title: "Vue 响应式原理"
 date: "2026-03-17"

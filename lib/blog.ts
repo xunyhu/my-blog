@@ -64,5 +64,5 @@ export function getAllTags() {
     });
   });
 
-  return ["All", ...Array.from(tagSet)];
+  return ["all", ...Array.from(tagSet)];
 }

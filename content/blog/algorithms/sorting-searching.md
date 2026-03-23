@@ -1,9 +1,3 @@
-
----
-
-### **algorithms/sorting-searching.md**
-
-```markdown
 ---
 title: "排序与查找算法"
 date: "2026-03-17"

@@ -1,9 +1,3 @@
-
----
-
-### **javascript/es6-advanced.md**
-
-```markdown
 ---
 title: "ES6 高级特性"
 date: "2026-03-17"
