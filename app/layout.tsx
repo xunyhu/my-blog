@@ -1,30 +1,18 @@
-"use client";
-import { useEffect, useState } from "react";
-import "./globals.css";
+import './globals.css';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+export const metadata = {
+  title: {
+    default: 'HuRui.dev',
+    template: '%s | HuRui.dev',
+  },
+  description: '记录前端知识体系与工程化实践',
+};
 
-  // 初始化主题
-  useEffect(() => {
-    const saved = localStorage.getItem("theme") as "light" | "dark" | null;
-    if (saved) setTheme(saved);
-    else {
-      // 默认跟随系统
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(prefersDark ? "dark" : "light");
-    }
-  }, []);
-
-  // 更新 body class
-  useEffect(() => {
-    if (theme === "dark") document.documentElement.classList.add("dark");
-    else document.documentElement.classList.remove("dark");
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
-
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="zh">
       <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">

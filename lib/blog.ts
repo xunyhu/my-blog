@@ -1,8 +1,9 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import { Tag } from '@/types/blog';
 
-const blogDir = path.join(process.cwd(), "content/blog");
+const blogDir = path.join(process.cwd(), 'content/blog');
 
 function getFilesRecursively(dir: string): string[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -12,7 +13,7 @@ function getFilesRecursively(dir: string): string[] {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
       files = files.concat(getFilesRecursively(fullPath));
-    } else if (entry.isFile() && entry.name.endsWith(".md")) {
+    } else if (entry.isFile() && entry.name.endsWith('.md')) {
       files.push(fullPath);
     }
   }
@@ -23,35 +24,35 @@ export function getAllPosts() {
   const files = getFilesRecursively(blogDir);
 
   const posts = files.map((filePath) => {
-    const content = fs.readFileSync(filePath, "utf-8");
+    const content = fs.readFileSync(filePath, 'utf-8');
     const { data } = matter(content);
 
     // 计算 slug，去掉 content/blog 前缀和 .md 后缀
     const slug = path
       .relative(blogDir, filePath)
-      .replace(/\\/g, "/") // Windows 路径兼容
-      .replace(/\.md$/, "");
+      .replace(/\\/g, '/') // Windows 路径兼容
+      .replace(/\.md$/, '');
 
     const rawDate = data.date ? new Date(data.date) : new Date();
-    const date = isNaN(rawDate.getTime()) ? new Date() : rawDate;
+    const date = isNaN(rawDate.getTime()) ? Date.now() : rawDate.getTime();
 
     return {
       slug,
       title: data.title,
-      date: date.toISOString(),
-      description: data.description || data.desc || "",
-      category: data.category || "blog",
+      date,
+      description: data.description || data.desc || '',
+      category: data.category || 'blog',
       tags: data.tags || [],
     };
   });
 
-  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+  return posts.sort((a, b) => b.date - a.date);
 }
 
 export function getAllCategories() {
   const posts = getAllPosts();
   const categories = new Set(posts.map((p) => p.category));
-  return ["All", ...Array.from(categories)];
+  return ['All', ...Array.from(categories)];
 }
 
 export function getAllTags() {
@@ -59,10 +60,10 @@ export function getAllTags() {
   const tagSet = new Set<string>();
 
   posts.forEach((post) => {
-    post.tags.forEach((tag: string) => {
-      tagSet.add(tag);
+    post.tags.forEach((tag: Tag) => {
+      tagSet.add(tag.name);
     });
   });
 
-  return ["all", ...Array.from(tagSet)];
+  return ['all', ...Array.from(tagSet)];
 }

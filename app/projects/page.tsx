@@ -1,3 +1,5 @@
+import HomeButton from "@/app/components/HomeButton";
+
 export default function ProjectsPage() {
   const projects = [
     {
@@ -37,6 +39,7 @@ export default function ProjectsPage() {
 
   return (
     <main className="container mx-auto px-4 py-10">
+      <HomeButton />
       <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
         项目展示
       </h1>
