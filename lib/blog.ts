@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { Tag } from '@/types/blog';
+import { Tag, Post } from '@/types/blog';
 
 const blogDir = path.join(process.cwd(), 'content/blog');
 
@@ -20,7 +20,7 @@ function getFilesRecursively(dir: string): string[] {
   return files;
 }
 
-export function getAllPosts() {
+export function getAllPosts(): Post[] {
   const files = getFilesRecursively(blogDir);
 
   const posts = files.map((filePath) => {

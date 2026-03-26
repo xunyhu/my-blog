@@ -8,7 +8,7 @@ export type Tag = {
 export type Post = {
   title: string;
   slug: string;
-  date: string;
+  date: number;
   description: string;
   category: Category;
   tags: Tag[];
