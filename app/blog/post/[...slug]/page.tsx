@@ -1,44 +1,27 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import PostContent from '@/app/blog/post/PostContent'; // Client Component
-
-function extractHeadings(markdown: string) {
-  const regex = /^(#{1,3})\s+(.*)/gm;
-  const headings = [];
-  let match;
-  while ((match = regex.exec(markdown))) {
-    headings.push({
-      level: match[1].length,
-      text: match[2],
-      id: match[2].toLowerCase().replace(/\s+/g, '-'),
-    });
-  }
-  return headings;
-}
+import { getContent } from '@/lib/post/getContent';
+import { extractHeadings } from '@/lib/post/toc';
+import ContentLayout from '@/app/components/post/ContentLayout';
+import MarkdownRenderer from '@/app/components/post/MarkdownRenderer';
+import BackButton from '@/app/components/post/BackButton';
 
 interface PageProps {
-  params: Promise<{ slug: string[] }>; // 注意是数组
+  params: Promise<{ slug: string[] }>;
 }
 
 export default async function PostPage({ params }: PageProps) {
   const slugArray = (await params).slug || [];
+  const post = getContent('blog', slugArray);
 
-  if (slugArray.length === 0) {
+  if (!post) {
     return <div className="p-10 text-center text-gray-500">文章不存在</div>;
   }
 
-  // 拼接文章路径
-  const filePath =
-    path.join(process.cwd(), 'content', 'blog', ...slugArray) + '.md';
+  const headings = extractHeadings(post.content);
 
-  if (!fs.existsSync(filePath)) {
-    return <div className="p-10 text-center text-gray-500">文章不存在</div>;
-  }
-
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
-  const { content } = matter(fileContent);
-  const headings = extractHeadings(content);
-
-  return <PostContent content={content} headings={headings} />;
+  return (
+    <ContentLayout content={post.content} headings={headings}>
+      <BackButton fallback="/blog" />
+      <MarkdownRenderer content={post.content} />
+    </ContentLayout>
+  );
 }

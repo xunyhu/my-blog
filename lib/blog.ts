@@ -4,6 +4,7 @@ import matter from 'gray-matter';
 import { Tag, Post } from '@/types/blog';
 
 const blogDir = path.join(process.cwd(), 'content/blog');
+const knowledgeDir = path.join(process.cwd(), 'content/frontend-knowledge');
 
 function getFilesRecursively(dir: string): string[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -66,4 +67,27 @@ export function getAllTags() {
   });
 
   return ['all', ...Array.from(tagSet)];
+}
+
+export function getKnowledgeMap() {
+  const knowledgeDir = path.join(process.cwd(), 'content/frontend-knowledge');
+
+  const categories = fs.readdirSync(knowledgeDir);
+
+  return categories.map((category) => {
+    const categoryPath = path.join(knowledgeDir, category);
+    const files = fs.readdirSync(categoryPath).sort();
+
+    return {
+      title: category.replace(/^\d+-/, ''),
+      children: files.map((file) => {
+        const name = file.replace('.md', '').replace(/^\d+-/, '');
+
+        return {
+          name,
+          slug: `/knowledge/${category}/${file.replace('.md', '')}`,
+        };
+      }),
+    };
+  });
 }

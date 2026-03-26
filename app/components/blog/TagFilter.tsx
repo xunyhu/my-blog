@@ -14,11 +14,18 @@ export default function TagFilter({
 
   return (
     <div className="flex flex-wrap gap-2 mb-8">
+      {/* 全部 */}
       <Link
         href={category ? `/blog/${category}` : '/blog'}
-        className={`px-3 py-1 rounded-full text-sm ${
-          !currentTag ? 'bg-blue-600 text-white' : 'bg-gray-100'
-        }`}
+        className={`
+          px-3 py-1.5 text-xs rounded-full border
+          transition
+          ${
+            !currentTag
+              ? 'bg-[#eef2ff] border-[#cbd5f5] text-[#3b82f6]'
+              : 'bg-white border-[#e2e8f0] text-[#64748b] hover:bg-[#f1f5f9]'
+          }
+        `}
       >
         全部
       </Link>
@@ -27,11 +34,15 @@ export default function TagFilter({
         <Link
           key={tag.slug}
           href={category ? `/blog/${category}/${tag.slug}` : `/blog`}
-          className={`px-3 py-1 rounded-full border text-sm ${
-            currentTag === tag.slug
-              ? 'bg-blue-600 text-white'
-              : 'bg-gray-100 hover:bg-gray-200'
-          }`}
+          className={`
+            px-3 py-1.5 text-xs rounded-full border
+            transition
+            ${
+              currentTag === tag.slug
+                ? 'bg-[#eef2ff] border-[#cbd5f5] text-[#3b82f6]'
+                : 'bg-white border-[#e2e8f0] text-[#64748b] hover:bg-[#f1f5f9]'
+            }
+          `}
         >
           {tag.name}
         </Link>

@@ -7,12 +7,18 @@ export default function CategoryNav({
   currentCategory?: string;
 }) {
   return (
-    <div className="flex gap-4 mb-8">
+    <div className="flex gap-3 mb-8 flex-wrap">
       <Link
         href="/blog"
-        className={`px-4 py-2 rounded-lg ${
-          !currentCategory ? 'bg-blue-600 text-white' : 'bg-gray-100'
-        }`}
+        className={`
+          px-3 py-1.5 text-sm rounded-full border
+          transition
+          ${
+            !currentCategory
+              ? 'bg-[#eef2ff] border-[#cbd5f5] text-[#3b82f6]'
+              : 'bg-white border-[#e2e8f0] text-[#64748b] hover:bg-[#f1f5f9]'
+          }
+        `}
       >
         全部
       </Link>
@@ -21,11 +27,15 @@ export default function CategoryNav({
         <Link
           key={key}
           href={`/blog/${key}`}
-          className={`px-4 py-2 rounded-lg transition ${
-            currentCategory === key
-              ? 'bg-blue-600 text-white'
-              : 'bg-gray-100 hover:bg-gray-200'
-          }`}
+          className={`
+            px-3 py-1.5 text-sm rounded-full border
+            transition
+            ${
+              currentCategory === key
+                ? 'bg-[#eef2ff] border-[#cbd5f5] text-[#3b82f6]'
+                : 'bg-white border-[#e2e8f0] text-[#64748b] hover:bg-[#f1f5f9]'
+            }
+          `}
         >
           {item.label}
         </Link>

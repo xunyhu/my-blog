@@ -7,7 +7,8 @@ import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import TOC from '@/app/components/TOC';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 
 interface PostContentProps {
   content: string;
@@ -21,13 +22,17 @@ export default function PostContent({
   referrer,
 }: PostContentProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const fromHome = searchParams.get('referrer');
   const handleBack = () => {
-    history.back();
-    // if (referrer) {
-    //   router.push(referrer);
-    // } else {
-    //   router.push('/blog');
-    // }
+    if (fromHome) {
+      router.push('/');
+    } else if (window.location.hash || referrer) {
+      const target = referrer ? `/blog/${referrer}` : '/blog';
+      router.push(target);
+    } else {
+      history.back();
+    }
   };
 
   return (
@@ -64,6 +69,23 @@ export default function PostContent({
               rehypeSlug,
               rehypeAutolinkHeadings,
             ]}
+            components={{
+              a: ({ href = '', children }) => {
+                const isInternal = href.startsWith('/');
+
+                // ✅ 站内链接（走 Next.js）
+                if (isInternal) {
+                  return <Link href={href}>{children}</Link>;
+                }
+
+                // ✅ 外链（新开标签页）
+                return (
+                  <a href={href} target="_blank" rel="noopener noreferrer">
+                    {children}
+                  </a>
+                );
+              },
+            }}
           >
             {content}
           </ReactMarkdown>
