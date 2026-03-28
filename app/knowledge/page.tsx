@@ -9,7 +9,9 @@ export default function KnowledgePage() {
     <main className="max-w-4xl mx-auto px-6 py-12">
       <HomeButton />
 
-      <h1 className="text-lg text-[#64748b] mb-10">前端知识体系</h1>
+      <h1 className="text-lg text-[#64748b] mb-10 pt-10 md:pt-0">
+        前端知识体系
+      </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {knowledgeMap.map((section) => (

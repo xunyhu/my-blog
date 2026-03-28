@@ -20,62 +20,64 @@ export default async function HomePage() {
   return (
     <main className="min-h-screen bg-[#f8fafc] text-[#0f172a]">
       {/* HERO */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-[#eef2ff] to-[#f8fafc] py-24">
+      <section className="relative overflow-hidden bg-gradient-to-r from-[#eef2ff] to-[#f8fafc] py-16 md:py-20 md:pb-12">
         <HeroParticles />
 
-        <div className="container mx-auto text-center px-6 relative z-10">
-          <h1 className="text-5xl font-semibold tracking-tight text-[#0f172a]">
-            HuRui.dev
-          </h1>
+        <div className="container mx-auto px-6 relative z-10 flex flex-col items-center justify-center text-center">
+          <div className="flex flex-col items-center">
+            <h1 className="text-5xl font-semibold tracking-tight text-[#0f172a]">
+              HuRui.dev
+            </h1>
 
-          <p className="mt-4 text-[#475569]">前端工程师</p>
-          <p className="mt-2 text-sm text-[#94a3b8]">
-            写不出 UI 的时候，就说这是设计问题
-          </p>
-        </div>
+            <p className="mt-4 text-[#475569]">前端工程师</p>
+            <p className="mt-2 text-sm text-[#94a3b8]">
+              写不出 UI 的时候，就说这是设计问题
+            </p>
 
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4">
-          {/* GitHub */}
-          <a
-            href="https://github.com/xunyhu"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              flex items-center justify-center
-              w-10 h-10 rounded-full
-              bg-white border border-[#e2e8f0]
-              text-[#64748b]
-              hover:text-[#3b82f6]
-              hover:border-[#cbd5f5]
-              transition
-            "
-          >
-            <FaGithub size={18} />
-          </a>
+            <div className="mt-6 flex items-center gap-4">
+              {/* GitHub */}
+              <a
+                href="https://github.com/xunyhu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+            flex items-center justify-center
+            w-10 h-10 rounded-full
+            bg-white border border-[#e2e8f0]
+            text-[#64748b]
+            hover:text-[#3b82f6]
+            hover:border-[#cbd5f5]
+            transition
+          "
+              >
+                <FaGithub size={18} />
+              </a>
 
-          {/* 掘金 */}
-          <a
-            href="https://juejin.cn/user/2260251640083950"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              flex items-center justify-center
-              w-10 h-10 rounded-full
-              bg-white border border-[#e2e8f0]
-              text-[#64748b]
-              hover:text-[#3b82f6]
-              hover:border-[#cbd5f5]
-              transition
-            "
-          >
-            <svg
-              className="w-4 h-4"
-              viewBox="0 0 1024 1024"
-              fill="currentColor"
-            >
-              <path d="M512 0L256 192v384l256 192 256-192V192L512 0z m0 853.333L341.333 725.333V384L512 512l170.667-128v341.333L512 853.333z" />
-            </svg>
-          </a>
+              {/* 掘金 */}
+              <a
+                href="https://juejin.cn/user/2260251640083950"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+            flex items-center justify-center
+            w-10 h-10 rounded-full
+            bg-white border border-[#e2e8f0]
+            text-[#64748b]
+            hover:text-[#3b82f6]
+            hover:border-[#cbd5f5]
+            transition
+          "
+              >
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 1024 1024"
+                  fill="currentColor"
+                >
+                  <path d="M512 0L256 192v384l256 192 256-192V192L512 0z m0 853.333L341.333 725.333V384L512 512l170.667-128v341.333L512 853.333z" />
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 

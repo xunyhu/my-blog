@@ -14,13 +14,16 @@ export default function ContentLayout({
   children,
 }: ContentLayoutProps) {
   return (
-    <main className="max-w-7xl mx-auto px-6 py-10 relative">
+    <main className="max-w-7xl mx-auto px-4 py-10">
       <div className="flex gap-10">
-        <aside className="w-64 sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto">
+        {/* ✅ 桌面显示，手机隐藏 */}
+        <aside className="hidden lg:block w-64 shrink-0 sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto">
           <TOC headings={headings} />
         </aside>
 
-        <article className="flex-1 prose max-w-none">{children}</article>
+        <article className="flex-1 min-w-0 prose max-w-none">
+          {children}
+        </article>
       </div>
     </main>
   );

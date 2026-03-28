@@ -9,24 +9,31 @@ import Link from 'next/link';
 
 export default function MarkdownRenderer({ content }: { content: string }) {
   return (
-    <ReactMarkdown
-      remarkPlugins={[remarkGfm]}
-      rehypePlugins={[rehypeHighlight, rehypeSlug, rehypeAutolinkHeadings]}
-      components={{
-        a: ({ href = '', children }) => {
-          if (href.startsWith('/')) {
-            return <Link href={href}>{children}</Link>;
-          }
+    <div className="prose max-w-full overflow-x-hidden break-words">
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeHighlight, rehypeSlug, rehypeAutolinkHeadings]}
+        components={{
+          a: ({ href = '', children }) => {
+            if (href.startsWith('/')) {
+              return <Link href={href}>{children}</Link>;
+            }
 
-          return (
-            <a href={href} target="_blank" rel="noopener noreferrer">
-              {children}
-            </a>
-          );
-        },
-      }}
-    >
-      {content}
-    </ReactMarkdown>
+            return (
+              <a href={href} target="_blank" rel="noopener noreferrer">
+                {children}
+              </a>
+            );
+          },
+          table: ({ children }) => (
+            <div className="table-wrapper">
+              <table>{children}</table>
+            </div>
+          ),
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    </div>
   );
 }

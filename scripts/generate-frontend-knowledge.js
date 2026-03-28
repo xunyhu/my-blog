@@ -1,30 +1,66 @@
 import fs from 'fs';
 import path from 'path';
 
-// 输出目录（你可以改成你的 blog 目录）
+// 目标目录
 const baseDir = path.join(process.cwd(), '../content/frontend-knowledge');
 
-// 统一模板
-const template = (title) => `# ${title}
+/**
+ * 统一文章模板（带基础内容）
+ */
+function generateContent(title, category) {
+  return `# ${title}
 
 ## 一、是什么
 
+${title} 是前端开发中的一个重要概念，属于 ${category} 知识体系中的核心内容。
+
+---
+
 ## 二、为什么
 
+理解 ${title} 可以帮助我们：
+- 提升基础原理理解能力
+- 更好定位线上问题
+- 构建完整前端知识体系
+
+---
+
 ## 三、核心原理
+
+### 1. 基本概念
+围绕 ${title} 的核心机制展开理解。
+
+### 2. 执行流程
+通常涉及：
+- 输入
+- 处理过程
+- 输出结果
+
+### 3. 关键点
+- 可控性
+- 性能影响
+- 实际应用场景
+
+---
 
 ## 四、代码实现
 
 \`\`\`js
-
+// ${title} 示例代码（后续可以继续完善）
+console.log("${title} example");
 \`\`\`
 
-## 五、面试题
+---
 
-## 六、总结
+## 五、总结
+
+${title} 是前端进阶中必须掌握的知识点，建议结合实践不断加深理解。
 `;
+}
 
-// 知识体系结构
+/**
+ * 知识体系结构
+ */
 const structure = {
   '00-前端认知': ['前端发展史', '浏览器工作原理总览', '前端架构全景'],
 
@@ -105,39 +141,40 @@ const structure = {
     '排序算法',
     '前端算法场景',
   ],
-
-  '08-项目实战': [
-    '博客系统',
-    '电商系统',
-    '权限系统',
-    '低代码平台',
-    '酒店SaaS系统',
-  ],
 };
 
-// 创建目录 + 文件
-function generate() {
-  if (!fs.existsSync(baseDir)) {
-    fs.mkdirSync(baseDir, { recursive: true });
+/**
+ * 🚀 清空旧目录
+ */
+function cleanDir(dir) {
+  if (fs.existsSync(dir)) {
+    fs.rmSync(dir, { recursive: true, force: true });
+    console.log('🧹 已清空旧目录:', dir);
   }
+}
+
+/**
+ * 🚀 生成文件
+ */
+function generate() {
+  // 1. 先清空旧内容
+  // cleanDir(baseDir);
+
+  // 2. 创建基础目录
+  fs.mkdirSync(baseDir, { recursive: true });
 
   Object.entries(structure).forEach(([category, files]) => {
     const categoryPath = path.join(baseDir, category);
-
-    if (!fs.existsSync(categoryPath)) {
-      fs.mkdirSync(categoryPath);
-    }
+    fs.mkdirSync(categoryPath, { recursive: true });
 
     files.forEach((name, index) => {
       const fileName = `${String(index + 1).padStart(2, '0')}-${name}.md`;
       const filePath = path.join(categoryPath, fileName);
 
-      if (!fs.existsSync(filePath)) {
-        fs.writeFileSync(filePath, template(name));
-        console.log('✅ 创建:', filePath);
-      } else {
-        console.log('⚠️ 已存在:', filePath);
-      }
+      const content = generateContent(name, category);
+
+      fs.writeFileSync(filePath, content, 'utf-8');
+      console.log('✅ 创建:', filePath);
     });
   });
 

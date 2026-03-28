@@ -7,7 +7,7 @@ export default function CategoryNav({
   currentCategory?: string;
 }) {
   return (
-    <div className="flex gap-3 mb-8 flex-wrap">
+    <div className="flex gap-3 mb-8 flex-wrap pt-10 md:pt-0">
       <Link
         href="/blog"
         className={`

@@ -1,12 +1,12 @@
 ---
-title: 'React Hooks 深入解析'
+title: 'React Hooks'
 date: '2026-03-01'
 tags: [{ name: 'React', slug: 'react' }]
 category: 'frontend'
-description: 'React Hooks 的使用场景、原理以及优化方案。'
+description: 'React Hooks 的使用场景、原理以及优化方案'
 ---
 
-# React Hooks 深入解析
+# React Hooks
 
 ## 什么是 Hooks
 
