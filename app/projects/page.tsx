@@ -1,31 +1,8 @@
+import Image from 'next/image';
 import HomeButton from '@/app/components/HomeButton';
+import { projects } from '@/app/data/projects';
 
 export default function ProjectsPage() {
-  const projects = [
-    {
-      name: '页面搭建系统',
-      tech: ['React', 'Schema', '低代码'],
-      desc: '支持拖拽组件与 schema 渲染的页面搭建平台',
-      highlights: [
-        '动态 schema 渲染引擎',
-        '组件拖拽与配置面板',
-        '多端适配（H5 + 小程序）',
-      ],
-      demo: '#',
-    },
-    {
-      name: '酒店 SaaS 商城',
-      tech: ['Vue', '小程序', '公众号'],
-      desc: '帮助酒店实现订房与商城一体化运营',
-      highlights: [
-        '多端统一业务逻辑',
-        '复杂表单配置系统',
-        '公众号 + 小程序打通',
-      ],
-      demo: '#',
-    },
-  ];
-
   return (
     <main className="max-w-4xl mx-auto px-6 py-12">
       <HomeButton />
@@ -33,7 +10,7 @@ export default function ProjectsPage() {
       {/* 标题 */}
       <h1 className="text-lg text-[#64748b] mb-10 pt-10 md:pt-0">项目实战</h1>
 
-      {/* 列表 */}
+      {/* 项目列表 */}
       <div className="space-y-6">
         {projects.map((project) => (
           <div
@@ -48,12 +25,12 @@ export default function ProjectsPage() {
               hover:bg-[#fafbff]
             "
           >
-            {/* 标题 */}
+            {/* 项目名称 */}
             <h2 className="text-base font-medium text-[#0f172a]">
               {project.name}
             </h2>
 
-            {/* 技术栈（统一标签风格） */}
+            {/* 技术栈 */}
             <div className="mt-2 flex flex-wrap gap-2">
               {project.tech.map((tag) => (
                 <span
@@ -72,7 +49,9 @@ export default function ProjectsPage() {
             </div>
 
             {/* 描述 */}
-            <p className="mt-3 text-sm text-[#64748b]">{project.desc}</p>
+            <p className="mt-3 text-sm text-[#64748b] leading-relaxed">
+              {project.desc}
+            </p>
 
             {/* 亮点 */}
             <ul className="mt-3 text-sm text-[#64748b] space-y-1">
@@ -81,19 +60,36 @@ export default function ProjectsPage() {
               ))}
             </ul>
 
-            {/* 操作 */}
-            <div className="mt-4">
-              <a
-                href={project.demo}
-                className="
-                  text-sm
-                  text-[#64748b]
-                  hover:text-[#3b82f6]
-                  transition
-                "
-              >
-                查看项目 →
-              </a>
+            {/* Demo / 小程序码 */}
+            <div className="mt-5">
+              {project.demo.type === 'qrcode' ? (
+                <div className="flex items-center gap-4">
+                  <Image
+                    src={project.demo.url}
+                    alt="小程序码"
+                    width={120}
+                    height={120}
+                    className="border border-[#e2e8f0] rounded-md"
+                  />
+                  <div className="text-xs text-[#94a3b8] leading-relaxed">
+                    <div>{project.demo.note}</div>
+                  </div>
+                </div>
+              ) : (
+                <a
+                  href={project.demo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    text-sm
+                    text-[#64748b]
+                    hover:text-[#3b82f6]
+                    transition
+                  "
+                >
+                  查看项目 →
+                </a>
+              )}
             </div>
           </div>
         ))}

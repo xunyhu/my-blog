@@ -41,32 +41,32 @@ export default async function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
-            flex items-center justify-center
-            w-10 h-10 rounded-full
-            bg-white border border-[#e2e8f0]
-            text-[#64748b]
-            hover:text-[#3b82f6]
-            hover:border-[#cbd5f5]
-            transition
-          "
+                  flex items-center justify-center
+                  w-10 h-10 rounded-full
+                  bg-white border border-[#e2e8f0]
+                  text-[#64748b]
+                  hover:text-[#3b82f6]
+                  hover:border-[#cbd5f5]
+                  transition
+                "
               >
                 <FaGithub size={18} />
               </a>
 
               {/* 掘金 */}
-              <a
+              {/* <a
                 href="https://juejin.cn/user/2260251640083950"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
-            flex items-center justify-center
-            w-10 h-10 rounded-full
-            bg-white border border-[#e2e8f0]
-            text-[#64748b]
-            hover:text-[#3b82f6]
-            hover:border-[#cbd5f5]
-            transition
-          "
+                  flex items-center justify-center
+                  w-10 h-10 rounded-full
+                  bg-white border border-[#e2e8f0]
+                  text-[#64748b]
+                  hover:text-[#3b82f6]
+                  hover:border-[#cbd5f5]
+                  transition
+                "
               >
                 <svg
                   className="w-4 h-4"
@@ -75,7 +75,7 @@ export default async function HomePage() {
                 >
                   <path d="M512 0L256 192v384l256 192 256-192V192L512 0z m0 853.333L341.333 725.333V384L512 512l170.667-128v341.333L512 853.333z" />
                 </svg>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
