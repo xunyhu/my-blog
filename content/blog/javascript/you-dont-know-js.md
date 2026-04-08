@@ -6,8 +6,6 @@ category: 'frontend'
 description: '构建 JS 底层认知'
 ---
 
-# 你不知道的 JavaScript
-
 ## 作用域链
 
 ### 概念

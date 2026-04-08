@@ -10,8 +10,6 @@ category: 'frontend'
 description: 'JavaScript “是怎么跑起来的”'
 ---
 
-# V8 执行原理
-
 ## V8 是什么
 
 V8 是 Google 开源的 JavaScript 引擎，采用即时编译(JIT)技术，将JavaScript代码直接编译为机器码执行。用于
@@ -144,7 +142,7 @@ To-Space (新活动区)           From-Space (新空闲区)
 └───┴───┴───┴───┘            └───┴───┴───┴───┘
 ```
 
-2. 老生代：Mark-Sweep & Mark-Compact
+1. 老生代：Mark-Sweep & Mark-Compact
 
    Mark-Sweep（标记-清除）
 
@@ -168,8 +166,8 @@ To-Space (新活动区)           From-Space (新空闲区)
                          内存连续
    ```
 
-3. 增量标记（Incremental Marking）
-4. 并发标记（Concurrent Marking）
+2. 增量标记（Incremental Marking）
+3. 并发标记（Concurrent Marking）
 
 ## 总结
 

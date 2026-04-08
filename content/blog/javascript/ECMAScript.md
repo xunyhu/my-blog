@@ -6,8 +6,6 @@ category: 'frontend'
 description: 'JavaScript 的标准化规范'
 ---
 
-# ECMAScript 简介
-
 ECMAScript（简称 ES）是 JavaScript 的标准化规范，由 Ecma International 组织维护。它定义了脚本语言的语法、类型、语义和核心库，使得不同环境下的 JavaScript 行为保持一致。
 
 JavaScript 是 ECMAScript 的实现之一，浏览器、Node.js 以及其他平台上的 JavaScript 都遵循 ECMAScript 标准。

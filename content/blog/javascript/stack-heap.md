@@ -6,8 +6,6 @@ category: 'frontend'
 description: '从内存分配机制和执行过程两个维度分析'
 ---
 
-# JavaScript 中的“栈”和“堆”
-
 ## 一、本质区别：谁管理，怎么存
 
 ### 栈（Stack）—— 线性结构，自动管理

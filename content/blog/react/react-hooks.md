@@ -6,8 +6,6 @@ category: 'frontend'
 description: 'React Hooks 的使用场景、原理以及优化方案'
 ---
 
-# React Hooks
-
 ## 什么是 Hooks
 
 React Hooks 是 React 16.8 引入的一套全新 API，它允许你在函数组件中使用状态（state）和副作用（effect）等功能，而无需编写类组件。

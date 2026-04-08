@@ -6,8 +6,6 @@ category: 'frontend'
 description: '解析 TypeScript 的核心概念、类型系统、泛型与进阶技巧。'
 ---
 
-# TypeScript 从入门到进阶
-
 ## 什么是 TypeScript
 
 TypeScript 是由 Microsoft 开发的一种 **JavaScript 超集**，增加了 **静态类型** 和 **编译时检查** 功能。  
@@ -19,8 +17,6 @@ TypeScript 是由 Microsoft 开发的一种 **JavaScript 超集**，增加了 **
 - 提供智能提示（IDE 支持）
 - 更好地支持大型项目和团队协作
 - 与现有 JS 兼容
-
----
 
 ## 基础类型
 
