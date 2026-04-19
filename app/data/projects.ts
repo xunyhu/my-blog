@@ -32,32 +32,31 @@ export const projects: Project[] = [
       note: '本人参与开发的电商小程序项目，扫码体验（示例）',
     },
   },
-  //   {
-  //     name: '页面搭建系统',
-  //     tech: ['React', 'Schema', '低代码'],
-  //     desc: '支持拖拽组件与 Schema 渲染的页面搭建平台，用于快速生成活动页与业务页面。',
-  //     highlights: [
-  //       '动态 Schema 渲染引擎（JSON → UI）',
-  //       '组件拖拽 + 配置面板（类似低代码平台）',
-  //       '支持多端渲染（H5 / 小程序）',
-  //     ],
-  //     demo: {
-  //       type: 'link',
-  //       url: '#',
-  //     },
+  // {
+  //   name: '低代码页面搭建平台',
+  //   tech: ['React', 'Schema', '低代码'],
+  //   desc: '支持拖拽组件与 Schema 渲染的页面搭建平台，用于快速生成活动页与业务页面。',
+  //   highlights: [
+  //     '动态 Schema 渲染引擎（JSON → UI）',
+  //     '组件拖拽 + 配置面板（类似低代码平台）',
+  //     '支持多端渲染（H5 / 小程序）',
+  //   ],
+  //   demo: {
+  //     type: 'link',
+  //     url: '#',
   //   },
-  //   {
-  //     name: '酒店 SaaS 商城',
-  //     tech: ['Vue', '小程序', '公众号'],
-  //     desc: '面向酒店客户的私域电商系统，支持订房 + 商品商城一体化运营。',
-  //     highlights: [
-  //       '多端统一业务逻辑（公众号 + 小程序）',
-  //       '复杂动态表单配置系统（可视化配置）',
-  //       '支持多酒店 SaaS 入驻模式',
-  //     ],
-  //     demo: {
-  //       type: 'link',
-  //       url: '#',
-  //     },
-  //   },
+  // },
+  {
+    name: 'RBAC权限系统',
+    tech: ['权限系统', '角色管理'],
+    desc: 'React + TypeScript  + Node.js 实现的 RBAC 权限系统示例，展示权限控制与角色管理的核心功能。',
+    highlights: [
+      'monorepo 结构（前端 + 后端）',
+      '基于角色的权限控制（RBAC）核心功能实现',
+    ],
+    demo: {
+      type: 'link',
+      url: 'https://admin.xunyihu.com',
+    },
+  },
 ];
