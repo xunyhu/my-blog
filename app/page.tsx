@@ -127,7 +127,7 @@ export default async function HomePage() {
             transition
           "
         >
-          <h3 className="font-medium text-[#0f172a]">项目实战</h3>
+          <h3 className="font-medium text-[#0f172a]">项目案例</h3>
           <p className="text-sm text-[#64748b] mt-2">SaaS · 电商 · 权限系统</p>
         </Link>
       </section>

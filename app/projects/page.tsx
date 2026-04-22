@@ -8,7 +8,7 @@ export default function ProjectsPage() {
       <HomeButton />
 
       {/* 标题 */}
-      <h1 className="text-lg text-[#64748b] mb-10 pt-10 md:pt-0">项目实战</h1>
+      <h1 className="text-lg text-[#64748b] mb-10 pt-10 md:pt-0">项目案例</h1>
 
       {/* 项目列表 */}
       <div className="space-y-6">
