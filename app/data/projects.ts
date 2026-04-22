@@ -49,10 +49,12 @@ export const projects: Project[] = [
   {
     name: 'RBAC权限系统',
     tech: ['权限系统', '角色管理'],
-    desc: 'React + TypeScript  + Node.js 实现的 RBAC 权限系统示例，展示权限控制与角色管理的核心功能。',
+    desc: '基于角色的权限控制（RBAC）核心功能实现，展示权限控制与角色管理的核心功能。',
     highlights: [
       'monorepo 结构（前端 + 后端）',
-      '基于角色的权限控制（RBAC）核心功能实现',
+      '前端：React + TypeScript + Antd + Vite ',
+      '后端：Node.js + Express + MySQL ',
+      '体验账号：admin/123456',
     ],
     demo: {
       type: 'link',
