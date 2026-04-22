@@ -14,7 +14,7 @@ export type Project = {
   tech: string[];
   desc: string;
   highlights: string[];
-  demo: Demo;
+  demo: Demo[];
 };
 
 export const projects: Project[] = [
@@ -26,26 +26,41 @@ export const projects: Project[] = [
       '完整电商链路（商品 → 下单 → 支付 → 会员体系）',
       '高质量 UI 与交互体验设计',
     ],
-    demo: {
-      type: 'qrcode',
-      url: '/images/sam-qrcode.png',
-      note: '本人参与开发的电商小程序项目，扫码体验（示例）',
-    },
+    demo: [
+      {
+        type: 'qrcode',
+        url: '/images/sam-qrcode.png',
+        note: '零售业电商项目，扫码体验（示例）',
+      },
+    ],
   },
-  // {
-  //   name: '低代码页面搭建平台',
-  //   tech: ['React', 'Schema', '低代码'],
-  //   desc: '支持拖拽组件与 Schema 渲染的页面搭建平台，用于快速生成活动页与业务页面。',
-  //   highlights: [
-  //     '动态 Schema 渲染引擎（JSON → UI）',
-  //     '组件拖拽 + 配置面板（类似低代码平台）',
-  //     '支持多端渲染（H5 / 小程序）',
-  //   ],
-  //   demo: {
-  //     type: 'link',
-  //     url: '#',
-  //   },
-  // },
+  {
+    name: '酒店SaaS系统',
+    tech: ['SaaS', '小程序', '公众号'],
+    desc: '面向酒店客户的SaaS系统，支持公众号商城、客房预订、订餐等能力。',
+    highlights: [
+      '支持酒店自营商城（订房 + 商品）',
+      '公众号 + 小程序双端运营',
+      '动态页面装修（Schema驱动）',
+    ],
+    demo: [
+      {
+        type: 'qrcode',
+        url: '/images/mgm-qrcode.png',
+        note: '自定义营销页，扫码体验（示例）',
+      },
+      {
+        type: 'qrcode',
+        url: '/images/ml-qrcode.jpg',
+        note: '客房预订，扫码体验（示例）',
+      },
+      {
+        type: 'qrcode',
+        url: '/images/yr-qrcode.png',
+        note: '订餐服务，扫码体验（示例）',
+      },
+    ],
+  },
   {
     name: 'RBAC权限系统',
     tech: ['权限系统', '角色管理'],
@@ -56,9 +71,11 @@ export const projects: Project[] = [
       '后端：Node.js + Express + MySQL ',
       '体验账号：admin/123456',
     ],
-    demo: {
-      type: 'link',
-      url: 'https://admin.xunyihu.com',
-    },
+    demo: [
+      {
+        type: 'link',
+        url: 'https://admin.xunyihu.com',
+      },
+    ],
   },
 ];

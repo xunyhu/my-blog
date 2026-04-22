@@ -61,35 +61,54 @@ export default function ProjectsPage() {
             </ul>
 
             {/* Demo / 小程序码 */}
-            <div className="mt-5">
-              {project.demo.type === 'qrcode' ? (
-                <div className="flex items-center gap-4">
-                  <Image
-                    src={project.demo.url}
-                    alt="小程序码"
-                    width={120}
-                    height={120}
-                    className="border border-[#e2e8f0] rounded-md"
-                  />
-                  <div className="text-xs text-[#94a3b8] leading-relaxed">
-                    <div>{project.demo.note}</div>
-                  </div>
-                </div>
-              ) : (
-                <a
-                  href={project.demo.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    text-sm
-                    text-[#64748b]
-                    hover:text-[#3b82f6]
-                    transition
-                  "
-                >
-                  查看项目 →
-                </a>
-              )}
+            <div className="mt-5 flex flex-wrap gap-6">
+              {project.demo.map((demo, index) => {
+                if (demo.type === 'qrcode') {
+                  return (
+                    <div key={index} className="flex items-center gap-3">
+                      <Image
+                        src={demo.url}
+                        alt="二维码"
+                        width={100}
+                        height={100}
+                        className="
+                          border border-[#e2e8f0]
+                          rounded-md
+                          transition
+                          hover:scale-105
+                        "
+                      />
+                      {demo.note && (
+                        <div className="text-xs text-[#94a3b8] leading-relaxed">
+                          {demo.note}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                return (
+                  <a
+                    key={index}
+                    href={demo.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="
+                      inline-block
+                      px-3 py-1
+                      text-sm
+                      text-[#475569]
+                      bg-[#f8fafc]
+                      border border-[#e2e8f0]
+                      rounded-md
+                      hover:bg-[#f1f5f9]
+                      transition
+                    "
+                  >
+                    查看项目 →
+                  </a>
+                );
+              })}
             </div>
           </div>
         ))}
