@@ -26,8 +26,6 @@ Hooks 的核心目标是：
 - `useMemo`
 - `useCallback`
 
----
-
 ## useState 示例
 
 `useState` 用于在函数组件中添加状态：
@@ -113,8 +111,8 @@ function App() {
 
 当组件渲染昂贵操作或者传递回调时，可以使用：
 
-- `useMemo` 缓存计算结果
-- `useCallback` 缓存函数引用
+- `useMemo` 缓存计算结果，我想记住这个值，下次别算了。
+- `useCallback` 缓存函数引用，我想记住这个函数，下次别新建了。
 
 ```tsx
 import React, { useState, useMemo, useCallback } from 'react';
@@ -136,8 +134,14 @@ function App() {
 }
 ```
 
-- 避免重复计算，提高性能
-- 避免子组件不必要渲染
+### 区别
+
+| Hook | 返回内容 | 用途 |
+|------|----------|------|
+| `useMemo` | 一个**记忆化的值** | 缓存昂贵的计算结果，避免重复计算 |
+| `useCallback` | 一个**记忆化的函数** | 缓存函数引用，避免子组件不必要的重渲染 |
+
+两者都接收两个参数：`(工厂函数/回调函数, 依赖数组)`。当依赖项不变时，返回上一次缓存的结果/函数。
 
 ## React Hooks 最佳实践
 
