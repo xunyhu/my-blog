@@ -2,6 +2,7 @@ export type Demo =
   | {
       type: 'link';
       url: string;
+      label?: string;
     }
   | {
       type: 'qrcode';
@@ -31,6 +32,28 @@ export const projects: Project[] = [
         type: 'qrcode',
         url: '/images/sam-qrcode.png',
         note: '零售业电商项目，扫码体验（示例）',
+      },
+    ],
+  },
+  {
+    name: '自定义页面装修系统',
+    tech: ['低代码', 'Schema驱动', 'React', 'Vue'],
+    desc: '支持后台可视化配置页面结构，前端根据Schema动态渲染，实现营销页面快速搭建。',
+    highlights: [
+      '后台拖拽/配置生成页面 Schema（JSON）',
+      'C端基于 Schema 动态渲染页面（组件映射）, Vue + Pinia + Vite',
+      'B端访问账号：admin/123456',
+    ],
+    demo: [
+      {
+        type: 'link',
+        url: 'https://admin.xunyihu.com/pageDesign',
+        label: '访问B端配置页',
+      },
+      {
+        type: 'qrcode',
+        url: '/images/page-qrcode.png',
+        note: 'C端页面效果（扫码查看）',
       },
     ],
   },
@@ -75,6 +98,7 @@ export const projects: Project[] = [
       {
         type: 'link',
         url: 'https://admin.xunyihu.com',
+        label: '在线体验 →',
       },
     ],
   },

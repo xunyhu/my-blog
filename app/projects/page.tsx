@@ -61,7 +61,7 @@ export default function ProjectsPage() {
             </ul>
 
             {/* Demo / 小程序码 */}
-            <div className="mt-5 flex flex-wrap gap-6">
+            <div className="mt-5 flex flex-wrap gap-6 items-start">
               {project.demo.map((demo, index) => {
                 if (demo.type === 'qrcode') {
                   return (
@@ -95,6 +95,7 @@ export default function ProjectsPage() {
                     rel="noopener noreferrer"
                     className="
                       inline-block
+                      self-center
                       px-3 py-1
                       text-sm
                       text-[#475569]
@@ -105,7 +106,7 @@ export default function ProjectsPage() {
                       transition
                     "
                   >
-                    查看项目 →
+                    {demo.label || '查看项目'}
                   </a>
                 );
               })}
