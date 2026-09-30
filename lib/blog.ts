@@ -91,3 +91,26 @@ export function getKnowledgeMap() {
     };
   });
 }
+
+export function getAIEngineerMap() {
+  const aiDir = path.join(process.cwd(), 'content/ai-engineer');
+
+  const categories = fs.readdirSync(aiDir).sort();
+
+  return categories.map((category) => {
+    const categoryPath = path.join(aiDir, category);
+    const files = fs.readdirSync(categoryPath).sort();
+
+    return {
+      title: category.replace(/^\d+-/, ''),
+      children: files.map((file) => {
+        const name = file.replace('.md', '').replace(/^\d+-/, '');
+
+        return {
+          name,
+          slug: `/ai-engineer/${category}/${file.replace('.md', '')}`,
+        };
+      }),
+    };
+  });
+}

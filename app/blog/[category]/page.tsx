@@ -23,7 +23,7 @@ export default async function Page({
 
       <CategoryNav currentCategory={category} />
 
-      {category === 'frontend' && <TagFilter tags={tags} category={category} />}
+      <TagFilter tags={tags} category={category} />
 
       <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {filtered.map((post) => (

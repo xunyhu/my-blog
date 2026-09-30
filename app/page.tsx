@@ -102,7 +102,7 @@ export default async function HomePage() {
       </section>
 
       {/* 卡片 */}
-      <section className="max-w-4xl mx-auto px-6 grid md:grid-cols-2 gap-4">
+      <section className="max-w-4xl mx-auto px-6 grid md:grid-cols-3 gap-4">
         <Link
           href="/knowledge"
           className="
@@ -129,6 +129,19 @@ export default async function HomePage() {
         >
           <h3 className="font-medium text-[#0f172a]">项目案例</h3>
           <p className="text-sm text-[#64748b] mt-2">SaaS · 电商 · 权限系统</p>
+        </Link>
+
+        <Link
+          href="/ai-engineer"
+          className="
+            p-6 rounded-xl
+            bg-white border border-[#e2e8f0]
+            hover:shadow-sm hover:-translate-y-0.5
+            transition
+          "
+        >
+          <h3 className="font-medium text-[#0f172a]">AI Engineer</h3>
+          <p className="text-sm text-[#64748b] mt-2">LLM · Agent · RAG · MCP</p>
         </Link>
       </section>
 
