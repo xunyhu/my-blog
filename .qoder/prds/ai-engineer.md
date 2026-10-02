@@ -211,5 +211,5 @@ content/ai-engineer/
 | P0   | 扩展 `getContent()` 支持 `ai-engineer` 类型 | ✅ 已完成 |
 | P1   | 创建 `/ai-engineer` 首页路由与页面          | ✅ 已完成 |
 | P1   | 创建 `/ai-engineer/[...slug]` 详情页路由    | ✅ 已完成 |
-| P2   | 逐步填充文章内容                            | 待开发    |
+| P2   | 逐步填充文章内容                            | 🚧 进行中（00-AI基础 8/8 已完成） |
 | P2   | 首页增加 AI Engineer 最新文章展示           | 待开发    |

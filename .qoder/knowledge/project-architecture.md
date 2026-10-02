@@ -7,9 +7,9 @@
 **核心功能**:
 
 - 博客文章展示（支持分类 / 标签筛选）
-- 前端知识体系图谱（8 大模块，60+ 知识点）
+- 前端知识体系图谱（10 大模块，78 篇知识点）
 - 项目案例展示（SaaS、电商、低代码、权限系统）
-- AI Engineer 知识板块（规划中）
+- AI Engineer 知识板块（已上线，8 大模块 58 篇）
 
 ---
 
@@ -81,7 +81,7 @@ my-blog/
 │   │   ├── projects/
 │   │   ├── react/
 │   │   └── typescript/
-│   └── frontend-knowledge/       # 前端知识体系（8 大模块 60+ 篇）
+│   └── frontend-knowledge/       # 前端知识体系（10 大模块 78 篇）
 │       ├── 00-前端认知/
 │       ├── 01-JavaScript核心/
 │       ├── 02-JavaScript进阶/
@@ -89,7 +89,9 @@ my-blog/
 │       ├── 04-React体系/
 │       ├── 05-工程化/
 │       ├── 06-前端架构/
-│       └── 07-算法与数据结构/
+│       ├── 07-算法与数据结构/
+│       ├── 08-TypeScript体系/
+│       └── 09-CSS与样式工程/
 │
 ├── lib/                          # 业务逻辑层
 │   ├── blog.ts                   # 文章数据获取（读取 MD + frontmatter 解析）
@@ -133,7 +135,7 @@ my-blog/
 | `/blog/[category]`       | 分类文章列表      | Server   | 按分类筛选 + 标签过滤器    |
 | `/blog/[category]/[tag]` | 分类+标签文章列表 | Server   | 二级筛选                   |
 | `/blog/post/[...slug]`   | 文章详情          | Server   | Markdown 渲染 + TOC 侧栏   |
-| `/knowledge`             | 知识图谱首页      | Server   | 8 大模块卡片网格           |
+| `/knowledge`             | 知识图谱首页      | Server   | 10 大模块卡片网格          |
 | `/knowledge/[...slug]`   | 知识点详情        | Server   | 同文章详情布局             |
 | `/projects`              | 项目案例          | Server   | 卡片展示 + 小程序码        |
 
@@ -242,7 +244,7 @@ my-blog/
 
 ### 前端知识体系 (`content/frontend-knowledge/`)
 
-- 8 大模块，编号前缀排序（`00-` ~ `07-`）
+- 10 大模块，编号前缀排序（`00-` ~ `09-`）
 - 文件名编号前缀决定展示顺序
 - 可通过 `scripts/generate-frontend-knowledge.js` 批量生成骨架文章
 - URL 使用中文目录名（需 `decodeURIComponent` 处理）
