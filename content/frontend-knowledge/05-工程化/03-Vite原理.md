@@ -28,9 +28,12 @@ node_modules → esbuild → ESM
 
 ## 四、生产环境
 
-使用：
+打包器随版本演进：
 
-Rollup 打包
+- **Vite ≤ 7**：生产构建使用 **Rollup**
+- **Vite 8（2026）**：默认切换到 **Rolldown**（Rust 编写），统一 dev / build 工具链，构建提速可达数倍~数十倍
+
+👉 Rolldown 的目标是取代 Rollup + esbuild，成为 Vite 唯一的底层打包器
 
 ## 五、核心优势
 
@@ -40,6 +43,6 @@ Rollup 打包
 
 ## 六、总结
 
-Vite本质：
+Vite 本质：
 
-开发用 ESM + 生产用 Rollup
+开发用原生 ESM（免打包）+ 生产用打包器（Rollup → Rolldown 演进）

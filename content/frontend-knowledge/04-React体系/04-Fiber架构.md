@@ -102,7 +102,7 @@ Fiber 是 React 16 引入的 可中断渲染架构。
 一个组件和它的 Fiber 节点
 
 ```text
-[ 函数组件 Counter ] 
+[ 函数组件 Counter ]
        |
        ▼
 ┌─────────────────┐
@@ -156,10 +156,10 @@ React 执行到 useState(0) 时，发现这是 第一个 Hook，于是创建一�
 
 - 从 Fiber 节点的 hooksList 头部开始，取出第一个 Hook 节点。
 - 当你执行第一个 useState(0) 时，React 发现已经有 Hook 节点了，就 复用 它的 memoizedState，忽略你传的初始值（0）。
-所以状态会保留为之前的 count 值。
+  所以状态会保留为之前的 count 值。
 - 接着执行 useEffect，React 取出第二个 Hook 节点，复用它的 effect 定义。
 - 执行第三个 useState，复用第三个 Hook 节点的状态。
-关键：React 不关心 Hook 的名字，只关心 你是第几个被调用的。所以调用顺序必须和上一次完全一致。
+  关键：React 不关心 Hook 的名字，只关心 你是第几个被调用的。所以调用顺序必须和上一次完全一致。
 
 ✅ 正确情况：每次调用顺序相同
 
@@ -190,18 +190,16 @@ function MyComponent({ flag }) {
 React 渲染的两个阶段
 
 1. Render 阶段（协调阶段，可中断）
-
    - 做什么：构建 Fiber 树，计算哪些 DOM 需要更新（diff），标记副作用（flags）。
    - 特点：可中断（浏览器空闲时执行，高优先级任务可打断低优先级）。
    - 结果：得到一棵 workInProgress 树，其中每个 Fiber 节点标记了需要执行的操作（Placement、Update、Deletion 等）。
    - 相关函数：beginWork、completeWork。
 
 2. Commit 阶段（提交阶段，不可中断）
-
    - 做什么：根据 Render 阶段标记的副作用，同步地将变更应用到真实 DOM。
    - 特点：不可中断，必须一次性完成，保证 UI 一致性。
    - 相关函数：commitRoot、commitMutationEffects、commitLayoutEffects。
-  
+
 Render 阶段找变化（可打断），Commit 阶段把变化真正画到屏幕上（必须一气呵成）。
 
 #### 双缓冲机制：alternate
@@ -275,4 +273,31 @@ current 树                       workInProgress 树
 
 ## 四、实践
 
-避免大组件阻塞，合理拆分 UI
+Fiber 架构对日常开发的指导意义：
+
+### 1. 让每个工作单元足够小
+
+Fiber 以「组件」为最小可中断单元。单个组件 render 过重（一次渲染上千节点、render 内做昂贵计算）会拉长单个 Fiber 的处理时间，削弱时间切片价值。
+
+- 拆分大组件，避免单个 Fiber 单元过重
+- 长列表用虚拟滚动（react-window / react-virtualized），减少一次性创建的 Fiber 节点
+- 昂贵计算移出 render，用 useMemo 缓存结果
+
+### 2. 善用优先级调度
+
+- 用户输入（受控组件）保持高优先级，避免被低优先级更新阻塞
+- useTransition / useDeferredValue 把非紧急更新标记为可中断，让紧急更新优先渲染
+
+### 3. 正确清理副作用
+
+Fiber 通过 flags（effect list）收集副作用。useEffect 的清理函数会在下次 effect 前或卸载时调用，务必清理定时器、订阅与事件监听，避免内存泄漏。
+
+## 五、总结
+
+- Fiber 把旧 Stack Reconciler 的**递归、不可中断**渲染，改造为**可中断、可恢复、可分优先级**的循环遍历
+- 每个 Fiber 节点是一个工作单元，通过 child / sibling / return 构成链表树，替代递归调用栈
+- **双缓冲**：current 树与 workInProgress 树交替，更新在内存中构建完成后一次性提交，避免中间态闪烁
+- 两阶段：Render（可中断，构建 WIP 树并标记 flags）→ Commit（不可中断，应用 DOM 变更、执行副作用）
+- Fiber 是 Concurrent Rendering、时间切片、Suspense、useTransition 等并发特性的底层基石
+
+> 理解 Fiber，才能理解 React 18+ 并发特性「为什么能中断」「优先级如何调度」。
