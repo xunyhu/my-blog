@@ -1,3 +1,12 @@
+---
+title: '什么是Embedding'
+description: '用一句话说清楚什么是Embedding的本质。'
+updatedAt: '2026-09-04'
+module: 'AI基础'
+order: 3
+status: 'outline'
+---
+
 # 什么是Embedding
 
 ## 一、是什么

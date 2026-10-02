@@ -1,3 +1,12 @@
+---
+title: 'Diff算法'
+description: 'React Diff 是一种 O(n) 的启发式算法。'
+updatedAt: '2026-04-07'
+module: 'React体系'
+order: 3
+status: 'outline'
+---
+
 # Diff算法
 
 ## 一、是什么

@@ -1,3 +1,12 @@
+---
+title: '高级Prompt技巧'
+description: '高级Prompt技巧是 AI 工程化中的一个核心概念，属于LLM基础知识模块。'
+updatedAt: '2026-09-04'
+module: 'LLM基础'
+order: 5
+status: 'outline'
+---
+
 # 高级Prompt技巧
 
 ## 一、是什么

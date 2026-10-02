@@ -1,3 +1,12 @@
+---
+title: '什么是 LLM'
+description: 'LLM（Large Language Model，大语言模型）本质上是一个经过海量文本数据训练、能够根据上下文预测并生成下一个 Token 的模型。'
+updatedAt: '2026-10-02'
+module: 'AI基础'
+order: 1
+status: 'done'
+---
+
 # 什么是 LLM
 
 ## 一、是什么

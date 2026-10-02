@@ -1,3 +1,12 @@
+---
+title: 'Fiber架构'
+description: 'Fiber 是 React 16 引入的 可中断渲染架构。'
+updatedAt: '2026-09-30'
+module: 'React体系'
+order: 4
+status: 'done'
+---
+
 # Fiber架构
 
 ## 一、是什么

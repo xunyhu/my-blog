@@ -1,3 +1,12 @@
+---
+title: 'MCP传输层'
+description: 'MCP传输层是 AI 工程化中的一个核心概念，属于MCP协议知识模块。'
+updatedAt: '2026-09-04'
+module: 'MCP协议'
+order: 6
+status: 'outline'
+---
+
 # MCP传输层
 
 ## 一、是什么

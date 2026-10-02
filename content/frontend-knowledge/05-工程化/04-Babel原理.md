@@ -1,3 +1,12 @@
+---
+title: 'Babel原理'
+description: 'Babel 是 JavaScript 编译器，用于将新语法转换为兼容旧浏览器的代码。'
+updatedAt: '2026-04-07'
+module: '工程化'
+order: 4
+status: 'draft'
+---
+
 # Babel原理
 
 ## 一、是什么

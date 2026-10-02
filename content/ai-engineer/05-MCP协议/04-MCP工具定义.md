@@ -1,3 +1,12 @@
+---
+title: 'MCP工具定义'
+description: 'MCP工具定义是 AI 工程化中的一个核心概念，属于MCP协议知识模块。'
+updatedAt: '2026-09-04'
+module: 'MCP协议'
+order: 4
+status: 'outline'
+---
+
 # MCP工具定义
 
 ## 一、是什么

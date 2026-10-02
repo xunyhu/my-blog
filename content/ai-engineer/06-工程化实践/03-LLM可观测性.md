@@ -1,3 +1,12 @@
+---
+title: 'LLM可观测性'
+description: 'LLM可观测性是 AI 工程化中的一个核心概念，属于工程化实践知识模块。'
+updatedAt: '2026-09-04'
+module: '工程化实践'
+order: 3
+status: 'outline'
+---
+
 # LLM可观测性
 
 ## 一、是什么

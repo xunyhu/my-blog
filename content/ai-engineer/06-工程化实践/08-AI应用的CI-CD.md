@@ -1,3 +1,12 @@
+---
+title: 'AI应用的CI-CD'
+description: 'AI应用的CI-CD是 AI 工程化中的一个核心概念，属于工程化实践知识模块。'
+updatedAt: '2026-09-04'
+module: '工程化实践'
+order: 8
+status: 'outline'
+---
+
 # AI应用的CI-CD
 
 ## 一、是什么

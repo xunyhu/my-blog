@@ -1,3 +1,12 @@
+---
+title: 'Agent开发框架'
+description: 'Agent开发框架是 AI 工程化中的一个核心概念，属于Agent架构知识模块。'
+updatedAt: '2026-09-04'
+module: 'Agent架构'
+order: 7
+status: 'outline'
+---
+
 # Agent开发框架
 
 ## 一、是什么

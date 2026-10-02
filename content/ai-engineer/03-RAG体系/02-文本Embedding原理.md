@@ -1,3 +1,12 @@
+---
+title: '文本Embedding原理'
+description: '文本Embedding原理是 AI 工程化中的一个核心概念，属于RAG体系知识模块。'
+updatedAt: '2026-09-04'
+module: 'RAG体系'
+order: 2
+status: 'outline'
+---
+
 # 文本Embedding原理
 
 ## 一、是什么

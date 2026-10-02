@@ -1,3 +1,12 @@
+---
+title: '什么是Token'
+description: '用一句话说清楚什么是Token的本质。'
+updatedAt: '2026-09-04'
+module: 'AI基础'
+order: 2
+status: 'outline'
+---
+
 # 什么是Token
 
 ## 一、是什么

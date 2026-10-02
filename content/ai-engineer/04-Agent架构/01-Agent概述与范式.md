@@ -1,3 +1,12 @@
+---
+title: 'Agent概述与范式'
+description: 'Agent概述与范式是 AI 工程化中的一个核心概念，属于Agent架构知识模块。'
+updatedAt: '2026-09-04'
+module: 'Agent架构'
+order: 1
+status: 'outline'
+---
+
 # Agent概述与范式
 
 ## 一、是什么

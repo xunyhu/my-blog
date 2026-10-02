@@ -1,3 +1,12 @@
+---
+title: 'MCP生态与最佳实践'
+description: 'MCP生态与最佳实践是 AI 工程化中的一个核心概念，属于MCP协议知识模块。'
+updatedAt: '2026-09-04'
+module: 'MCP协议'
+order: 7
+status: 'outline'
+---
+
 # MCP生态与最佳实践
 
 ## 一、是什么

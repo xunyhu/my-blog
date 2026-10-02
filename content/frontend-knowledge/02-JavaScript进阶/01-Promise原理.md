@@ -1,3 +1,12 @@
+---
+title: 'Promise原理'
+description: 'Promise 是 JavaScript 中用于处理异步操作的对象。'
+updatedAt: '2026-04-07'
+module: 'JavaScript进阶'
+order: 1
+status: 'draft'
+---
+
 # Promise原理
 
 ## 一、是什么

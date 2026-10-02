@@ -1,3 +1,12 @@
+---
+title: '什么是Agent'
+description: '用一句话说清楚什么是Agent的本质。'
+updatedAt: '2026-09-04'
+module: 'AI基础'
+order: 4
+status: 'outline'
+---
+
 # 什么是Agent
 
 ## 一、是什么

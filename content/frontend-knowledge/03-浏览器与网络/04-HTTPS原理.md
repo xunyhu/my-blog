@@ -1,3 +1,12 @@
+---
+title: 'HTTPS原理'
+description: 'HTTPS = HTTP + SSL/TLS（加密）'
+updatedAt: '2026-04-07'
+module: '浏览器与网络'
+order: 4
+status: 'outline'
+---
+
 # HTTPS原理
 
 ## 一、是什么

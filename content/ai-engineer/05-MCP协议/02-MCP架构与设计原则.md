@@ -1,3 +1,12 @@
+---
+title: 'MCP架构与设计原则'
+description: 'MCP架构与设计原则是 AI 工程化中的一个核心概念，属于MCP协议知识模块。'
+updatedAt: '2026-09-04'
+module: 'MCP协议'
+order: 2
+status: 'outline'
+---
+
 # MCP架构与设计原则
 
 ## 一、是什么

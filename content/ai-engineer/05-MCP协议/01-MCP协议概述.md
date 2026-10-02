@@ -1,3 +1,12 @@
+---
+title: 'MCP协议概述'
+description: 'MCP协议概述是 AI 工程化中的一个核心概念，属于MCP协议知识模块。'
+updatedAt: '2026-09-04'
+module: 'MCP协议'
+order: 1
+status: 'outline'
+---
+
 # MCP协议概述
 
 ## 一、是什么

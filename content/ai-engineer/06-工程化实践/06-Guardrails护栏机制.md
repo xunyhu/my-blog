@@ -1,3 +1,12 @@
+---
+title: 'Guardrails护栏机制'
+description: 'Guardrails护栏机制是 AI 工程化中的一个核心概念，属于工程化实践知识模块。'
+updatedAt: '2026-09-04'
+module: '工程化实践'
+order: 6
+status: 'outline'
+---
+
 # Guardrails护栏机制
 
 ## 一、是什么

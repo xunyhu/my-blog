@@ -1,3 +1,12 @@
+---
+title: 'TCP三次握手'
+description: 'TCP 三次握手用于建立连接。'
+updatedAt: '2026-04-07'
+module: '浏览器与网络'
+order: 5
+status: 'outline'
+---
+
 # TCP三次握手
 
 ## 一、是什么

@@ -1,3 +1,12 @@
+---
+title: '服务端组件RSC'
+description: 'React Server Components 是在服务端运行的组件。'
+updatedAt: '2026-04-07'
+module: 'React体系'
+order: 9
+status: 'outline'
+---
+
 # 服务端组件RSC
 
 ## 一、是什么

@@ -1,3 +1,12 @@
+---
+title: 'LLM API设计模式'
+description: 'LLM API设计模式是 AI 工程化中的一个核心概念，属于LLM基础知识模块。'
+updatedAt: '2026-09-04'
+module: 'LLM基础'
+order: 8
+status: 'outline'
+---
+
 # LLM API设计模式
 
 ## 一、是什么

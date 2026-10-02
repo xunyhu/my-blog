@@ -1,3 +1,12 @@
+---
+title: 'Transformer架构概要'
+description: 'Transformer架构概要是 AI 工程化中的一个核心概念，属于LLM基础知识模块。'
+updatedAt: '2026-09-04'
+module: 'LLM基础'
+order: 2
+status: 'outline'
+---
+
 # Transformer架构概要
 
 ## 一、是什么

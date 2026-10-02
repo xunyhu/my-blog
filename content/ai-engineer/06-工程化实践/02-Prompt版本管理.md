@@ -1,3 +1,12 @@
+---
+title: 'Prompt版本管理'
+description: 'Prompt版本管理是 AI 工程化中的一个核心概念，属于工程化实践知识模块。'
+updatedAt: '2026-09-04'
+module: '工程化实践'
+order: 2
+status: 'outline'
+---
+
 # Prompt版本管理
 
 ## 一、是什么

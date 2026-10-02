@@ -1,3 +1,12 @@
+---
+title: '高级RAG架构'
+description: '高级RAG架构是 AI 工程化中的一个核心概念，属于RAG体系知识模块。'
+updatedAt: '2026-09-04'
+module: 'RAG体系'
+order: 8
+status: 'outline'
+---
+
 # 高级RAG架构
 
 ## 一、是什么

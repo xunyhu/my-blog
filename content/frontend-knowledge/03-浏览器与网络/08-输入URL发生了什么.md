@@ -1,3 +1,12 @@
+---
+title: '输入URL发生了什么'
+description: 'HTTP 请求发送'
+updatedAt: '2026-04-07'
+module: '浏览器与网络'
+order: 8
+status: 'outline'
+---
+
 # 输入URL发生了什么
 
 ## 一、整体流程

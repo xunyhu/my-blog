@@ -1,3 +1,12 @@
+---
+title: 'Webpack原理'
+description: 'Webpack 是一个模块打包工具（Bundler），将多个模块打包成浏览器可运行的资源。'
+updatedAt: '2026-04-07'
+module: '工程化'
+order: 2
+status: 'draft'
+---
+
 # Webpack原理
 
 ## 一、是什么

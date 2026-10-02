@@ -1,3 +1,12 @@
+---
+title: 'SaaS架构'
+description: 'SaaS（Software as a Service）是基于云的多租户软件架构。'
+updatedAt: '2026-09-30'
+module: '前端架构'
+order: 6
+status: 'draft'
+---
+
 # SaaS架构
 
 ## 一、是什么

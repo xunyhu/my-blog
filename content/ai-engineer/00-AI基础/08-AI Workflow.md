@@ -1,3 +1,12 @@
+---
+title: 'AI Workflow'
+description: '用一句话说清楚AI Workflow的本质。'
+updatedAt: '2026-09-04'
+module: 'AI基础'
+order: 8
+status: 'outline'
+---
+
 # AI Workflow
 
 ## 一、是什么

@@ -1,3 +1,12 @@
+---
+title: '虚拟DOM'
+description: 'Virtual DOM 是 JS 对象形式的 DOM 描述：'
+updatedAt: '2026-04-07'
+module: 'React体系'
+order: 2
+status: 'outline'
+---
+
 # 虚拟DOM
 
 ## 一、是什么

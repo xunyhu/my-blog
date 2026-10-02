@@ -1,3 +1,12 @@
+---
+title: 'this 指向'
+description: 'this 是函数执行时绑定的对象。'
+updatedAt: '2026-04-07'
+module: 'JavaScript核心'
+order: 5
+status: 'draft'
+---
+
 # this 指向
 
 ## 一、是什么

@@ -1,3 +1,12 @@
+---
+title: 'Token与Tokenizer'
+description: 'Token与Tokenizer是 AI 工程化中的一个核心概念，属于LLM基础知识模块。'
+updatedAt: '2026-09-04'
+module: 'LLM基础'
+order: 3
+status: 'outline'
+---
+
 # Token与Tokenizer
 
 ## 一、是什么

@@ -1,3 +1,12 @@
+---
+title: 'Hooks原理'
+description: 'Hooks 是 React 让函数组件拥有状态和副作用的机制。'
+updatedAt: '2026-04-07'
+module: 'React体系'
+order: 5
+status: 'outline'
+---
+
 # Hooks原理
 
 ## 一、是什么

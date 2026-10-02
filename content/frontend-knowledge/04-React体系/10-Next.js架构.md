@@ -1,3 +1,12 @@
+---
+title: 'Next.js架构'
+description: 'Next.js 是基于 React 的全栈框架。'
+updatedAt: '2026-04-07'
+module: 'React体系'
+order: 10
+status: 'draft'
+---
+
 # Next.js架构
 
 ## 一、是什么

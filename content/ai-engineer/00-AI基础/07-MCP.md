@@ -1,3 +1,12 @@
+---
+title: 'MCP'
+description: '用一句话说清楚MCP的本质。'
+updatedAt: '2026-09-04'
+module: 'AI基础'
+order: 7
+status: 'outline'
+---
+
 # MCP
 
 ## 一、是什么

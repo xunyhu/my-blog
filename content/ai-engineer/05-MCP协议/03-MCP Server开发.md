@@ -1,3 +1,12 @@
+---
+title: 'MCP Server开发'
+description: 'MCP Server开发是 AI 工程化中的一个核心概念，属于MCP协议知识模块。'
+updatedAt: '2026-09-04'
+module: 'MCP协议'
+order: 3
+status: 'outline'
+---
+
 # MCP Server开发
 
 ## 一、是什么

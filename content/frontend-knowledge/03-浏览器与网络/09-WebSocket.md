@@ -1,3 +1,12 @@
+---
+title: 'WebSocket'
+description: 'WebSocket 是一种全双工通信协议。'
+updatedAt: '2026-04-07'
+module: '浏览器与网络'
+order: 9
+status: 'outline'
+---
+
 # WebSocket
 
 ## 一、是什么

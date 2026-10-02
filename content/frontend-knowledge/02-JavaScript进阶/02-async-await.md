@@ -1,3 +1,12 @@
+---
+title: 'async / await'
+description: 'async / await 是基于 Promise 的语法糖，用于简化异步代码。'
+updatedAt: '2026-04-07'
+module: 'JavaScript进阶'
+order: 2
+status: 'draft'
+---
+
 # async / await
 
 ## 一、是什么

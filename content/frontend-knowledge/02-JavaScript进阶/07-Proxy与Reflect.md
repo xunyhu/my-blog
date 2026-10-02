@@ -1,3 +1,12 @@
+---
+title: 'Proxy 与 Reflect'
+description: 'Proxy 用于拦截对象操作。'
+updatedAt: '2026-04-07'
+module: 'JavaScript进阶'
+order: 7
+status: 'outline'
+---
+
 # Proxy 与 Reflect
 
 ## 一、是什么

@@ -1,3 +1,12 @@
+---
+title: '多Agent协作'
+description: '多Agent协作是 AI 工程化中的一个核心概念，属于Agent架构知识模块。'
+updatedAt: '2026-09-04'
+module: 'Agent架构'
+order: 6
+status: 'outline'
+---
+
 # 多Agent协作
 
 ## 一、是什么

@@ -1,3 +1,12 @@
+---
+title: 'Vite原理'
+description: 'Vite 是基于原生 ES Module 的前端构建工具。'
+updatedAt: '2026-10-02'
+module: '工程化'
+order: 3
+status: 'outline'
+---
+
 # Vite原理
 
 ## 一、是什么

@@ -1,3 +1,12 @@
+---
+title: 'Function Calling'
+description: '用一句话说清楚Function Calling的本质。'
+updatedAt: '2026-09-04'
+module: 'AI基础'
+order: 6
+status: 'outline'
+---
+
 # Function Calling
 
 ## 一、是什么

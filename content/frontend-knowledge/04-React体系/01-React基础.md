@@ -1,3 +1,12 @@
+---
+title: 'React基础'
+description: 'React 是由 Meta（原名Facebook） 开发的一个用于构建用户界面的 JavaScript 库，核心特点是以组件化和声明式的方式构建UI。'
+updatedAt: '2026-09-30'
+module: 'React体系'
+order: 1
+status: 'done'
+---
+
 # React基础
 
 ## 一、是什么

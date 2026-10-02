@@ -1,3 +1,12 @@
+---
+title: 'TreeShaking'
+description: 'Tree Shaking 是移除未使用代码（Dead Code）的优化技术。'
+updatedAt: '2026-04-07'
+module: '工程化'
+order: 5
+status: 'outline'
+---
+
 # TreeShaking
 
 ## 一、是什么

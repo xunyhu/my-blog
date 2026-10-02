@@ -1,3 +1,12 @@
+---
+title: 'CI-CD'
+description: 'CI/CD 是自动化构建、测试、部署流程。'
+updatedAt: '2026-04-07'
+module: '工程化'
+order: 8
+status: 'outline'
+---
+
 # CI-CD
 
 ## 一、是什么

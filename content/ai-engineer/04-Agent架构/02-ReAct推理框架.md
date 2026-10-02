@@ -1,3 +1,12 @@
+---
+title: 'ReAct推理框架'
+description: 'ReAct推理框架是 AI 工程化中的一个核心概念，属于Agent架构知识模块。'
+updatedAt: '2026-09-04'
+module: 'Agent架构'
+order: 2
+status: 'outline'
+---
+
 # ReAct推理框架
 
 ## 一、是什么

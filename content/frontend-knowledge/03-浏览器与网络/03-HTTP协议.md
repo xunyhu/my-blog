@@ -1,3 +1,12 @@
+---
+title: 'HTTP协议'
+description: 'HTTP（超文本传输协议）是客户端和服务器之间的通信协议。'
+updatedAt: '2026-04-07'
+module: '浏览器与网络'
+order: 3
+status: 'outline'
+---
+
 # HTTP协议
 
 ## 一、是什么

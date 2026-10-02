@@ -1,3 +1,12 @@
+---
+title: '什么是RAG'
+description: '用一句话说清楚什么是RAG的本质。'
+updatedAt: '2026-09-04'
+module: 'AI基础'
+order: 5
+status: 'outline'
+---
+
 # 什么是RAG
 
 ## 一、是什么
