@@ -62,7 +62,7 @@ ${title} 是前端进阶中必须掌握的知识点，建议结合实践不断�
  * 知识体系结构
  */
 const structure = {
-  '00-前端认知': ['前端发展史', '浏览器工作原理总览', '前端架构全景'],
+  '00-前端认知': ['前端发展史', '浏览器工作原理总览', '前端架构全景', '从前端工程师到AI Engineer'],
 
   '01-JavaScript核心': [
     '数据类型',
@@ -99,6 +99,7 @@ const structure = {
     '输入URL发生了什么',
     'WebSocket',
     '前端性能优化',
+    'SSE与流式响应',
   ],
 
   '04-React体系': [
@@ -109,7 +110,7 @@ const structure = {
     'Hooks原理',
     '状态管理',
     '性能优化',
-    'React18特性',
+    'React18与19特性',
     '服务端组件RSC',
     'Next.js架构',
   ],
@@ -141,6 +142,28 @@ const structure = {
     '排序算法',
     '前端算法场景',
   ],
+
+  '08-TypeScript体系': [
+    '类型系统基础',
+    '接口与类型别名',
+    '泛型',
+    '类型推导',
+    '工具类型',
+    '类型体操',
+    'React中的TypeScript',
+    'TS工程配置',
+  ],
+
+  '09-CSS与样式工程': [
+    '选择器与优先级',
+    '层叠上下文与BFC',
+    'Flex布局',
+    'Grid布局',
+    '响应式与移动端适配',
+    'CSS变量与主题化',
+    'Tailwind实践',
+    'CSS性能与动画',
+  ],
 };
 
 /**
@@ -170,6 +193,12 @@ function generate() {
     files.forEach((name, index) => {
       const fileName = `${String(index + 1).padStart(2, '0')}-${name}.md`;
       const filePath = path.join(categoryPath, fileName);
+
+      // ⚠️ 守卫：已存在的成稿文件绝不覆盖（脚本仅用于补齐缺失的占位骨架）
+      if (fs.existsSync(filePath)) {
+        console.log('⏭️  跳过（已存在）:', filePath);
+        return;
+      }
 
       const content = generateContent(name, category);
 
