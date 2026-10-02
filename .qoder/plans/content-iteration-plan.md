@@ -15,7 +15,7 @@
 | Wave  | 主题                                  | 任务数 | 工作量     | 状态      |
 | ----- | ------------------------------------- | ------ | ---------- | --------- |
 | **0** | 立即止血（不可逆风险 + 线上错误信息） | 5      | ~2.5 人日  | ✅ 已完成 |
-| **1** | 元数据基建·双板块合并                 | 4      | ~4 人日    | ⬜ 未开始 |
+| **1** | 元数据基建·双板块合并                 | 4      | ~4 人日    | ✅ 已完成 |
 | **2** | 对齐技术栈 + 门面填充·双轨            | 8      | ~15 人日   | ⬜ 未开始 |
 | **3** | 前端质量洼地攻坚                      | 4      | ~11 人日   | ⬜ 未开始 |
 | **4** | AI 差异化模块攻坚（MCP/Agent/LLM）    | 4      | ~15.5 人日 | ⬜ 未开始 |
@@ -58,13 +58,13 @@
 
 > 目标：打通 118 篇文章的 frontmatter / SEO / 完成度可视化。这是后续所有内容的地基，双板块共用一套实现。
 
-- [ ] **批量注入 frontmatter（合并）** `前端 P0-4 + AI P0-2` · `content/frontend-knowledge/**`(60) + `content/ai-engineer/**`(58) · ~2人日
+- [x] **批量注入 frontmatter（合并）** `前端 P0-4 + AI P0-2` · `content/frontend-knowledge/**`(60) + `content/ai-engineer/**`(58) · ~2人日
   - 写一个共用脚本注入 `title`/`description`/`updatedAt`/`module`/`order`/`status`。`status` 取值 `outline｜draft｜done`：前端按 A/B1/B2 映射，AI 侧 57 篇标 `outline`、1 篇标 `done`
-- [ ] **详情页 SEO 元信息（合并）** `前端 P0-5 + AI P0-3` · `app/knowledge/[...slug]/page.tsx`、`app/ai-engineer/[...slug]/page.tsx`、`lib/post/getContent.ts` · ~0.8人日
+- [x] **详情页 SEO 元信息（合并）** `前端 P0-5 + AI P0-3` · `app/knowledge/[...slug]/page.tsx`、`app/ai-engineer/[...slug]/page.tsx`、`lib/post/getContent.ts` · ~0.8人日
   - 两详情页共用 `getContent`，新增 `generateMetadata()` 输出 title/description。验收：查看页面源码有正确 `<title>` 与 meta
-- [ ] **修复分类排序不一致** `前端 P0-6` · `lib/blog.ts`(75行) · 0.1人日
+- [x] **修复分类排序不一致** `前端 P0-6` · `lib/blog.ts`(75行) · 0.1人日
   - `getKnowledgeMap()` 的 `readdirSync` 补 `.sort()`，与已正确的 `getAIEngineerMap()`(98行) 对齐
-- [ ] **首页完成度徽标（门面止血）** `AI P0-4`（机制统一至前端 P2-1） · `app/ai-engineer/page.tsx`、`app/knowledge/page.tsx` · ~1人日
+- [x] **首页完成度徽标（门面止血）** `AI P0-4`（机制统一至前端 P2-1） · `app/ai-engineer/page.tsx`、`app/knowledge/page.tsx` · ~1人日
   - 基于 `status` 字段，对 `outline` 文章显示「待完善」徽标或置灰，避免读者误入空文
 
 ---
