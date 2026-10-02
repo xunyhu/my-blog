@@ -57,6 +57,44 @@ ${title}是 AI 工程师必须掌握的知识点，建议结合实际项目不�
 }
 
 /**
+ * 基础篇模板（00-AI基础）
+ */
+function generateBasicContent(title) {
+  return `# ${title}
+
+## 一、是什么
+
+一句话说清 ${title} 的本质。
+
+## 二、为什么
+
+为什么需要了解 ${title}。
+
+## 三、核心概念
+
+### 1. 定义
+
+### 2. 关键特征
+
+### 3. 与其他概念的关系
+
+## 四、直观示例
+
+（此处补充简单代码或图示）
+
+## 五、常见误区
+
+- 误区一：
+
+- 误区二：
+
+## 六、总结
+
+要点回顾 + 进阶阅读指引。
+`;
+}
+
+/**
  * 知识体系结构
  */
 const structure = {
@@ -146,6 +184,7 @@ function generate() {
   fs.mkdirSync(baseDir, { recursive: true });
 
   let totalCount = 0;
+  let skippedCount = 0;
 
   Object.entries(structure).forEach(([category, files]) => {
     const categoryPath = path.join(baseDir, category);
@@ -155,14 +194,27 @@ function generate() {
       const fileName = `${String(index + 1).padStart(2, '0')}-${name}.md`;
       const filePath = path.join(categoryPath, fileName);
 
-      const content = generateContent(name, category.replace(/^\d+-/, ''));
+      // 已存在则跳过，绝不覆盖既有内容（保护已成稿文章）
+      if (fs.existsSync(filePath)) {
+        console.log('⏭️  跳过（已存在）', filePath);
+        skippedCount++;
+        return;
+      }
+
+      // 00-AI基础 用基础篇模板，其余模块用进阶篇模板
+      const content =
+        category === '00-AI基础'
+          ? generateBasicContent(name)
+          : generateContent(name, category.replace(/^\d+-/, ''));
       fs.writeFileSync(filePath, content, 'utf-8');
       console.log('✅', filePath);
       totalCount++;
     });
   });
 
-  console.log(`\n🎉 AI Engineer 知识库生成完成！共 ${totalCount} 篇`);
+  console.log(
+    `\n🎉 AI Engineer 知识库生成完成！新增 ${totalCount} 篇，跳过 ${skippedCount} 篇（已存在）`
+  );
 }
 
 generate();
