@@ -69,14 +69,26 @@ export function getAllTags() {
   return ['all', ...Array.from(tagSet)];
 }
 
-export function getKnowledgeMap() {
-  const knowledgeDir = path.join(process.cwd(), 'content/frontend-knowledge');
+/** 读取单篇文章 frontmatter 中的完成度状态（outline｜draft｜done） */
+function readStatus(filePath: string): string {
+  try {
+    const raw = fs.readFileSync(filePath, 'utf-8');
+    const { data } = matter(raw);
+    return (data.status as string) || 'outline';
+  } catch {
+    return 'outline';
+  }
+}
 
-  const categories = fs.readdirSync(knowledgeDir);
+export function getKnowledgeMap() {
+  const categories = fs.readdirSync(knowledgeDir).sort();
 
   return categories.map((category) => {
     const categoryPath = path.join(knowledgeDir, category);
-    const files = fs.readdirSync(categoryPath).sort();
+    const files = fs
+      .readdirSync(categoryPath)
+      .filter((file) => file.endsWith('.md'))
+      .sort();
 
     return {
       title: category.replace(/^\d+-/, ''),
@@ -86,6 +98,7 @@ export function getKnowledgeMap() {
         return {
           name,
           slug: `/knowledge/${category}/${file.replace('.md', '')}`,
+          status: readStatus(path.join(categoryPath, file)),
         };
       }),
     };
@@ -99,7 +112,10 @@ export function getAIEngineerMap() {
 
   return categories.map((category) => {
     const categoryPath = path.join(aiDir, category);
-    const files = fs.readdirSync(categoryPath).sort();
+    const files = fs
+      .readdirSync(categoryPath)
+      .filter((file) => file.endsWith('.md'))
+      .sort();
 
     return {
       title: category.replace(/^\d+-/, ''),
@@ -109,6 +125,7 @@ export function getAIEngineerMap() {
         return {
           name,
           slug: `/ai-engineer/${category}/${file.replace('.md', '')}`,
+          status: readStatus(path.join(categoryPath, file)),
         };
       }),
     };

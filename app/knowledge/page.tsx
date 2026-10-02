@@ -31,13 +31,22 @@ export default function KnowledgePage() {
 
             <ul className="space-y-2">
               {section.children.map((item) => (
-                <li key={item.name}>
+                <li key={item.name} className="flex items-center gap-2">
                   <Link
                     href={item.slug}
-                    className="text-sm text-[#64748b] hover:text-[#3b82f6]"
+                    className={`text-sm hover:text-[#3b82f6] ${
+                      item.status === 'outline'
+                        ? 'text-[#94a3b8]'
+                        : 'text-[#64748b]'
+                    }`}
                   >
                     {item.name}
                   </Link>
+                  {item.status === 'outline' && (
+                    <span className="shrink-0 rounded bg-[#f1f5f9] px-1.5 py-0.5 text-[10px] text-[#94a3b8]">
+                      待完善
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>

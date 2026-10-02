@@ -1,8 +1,27 @@
+import type { Metadata } from 'next';
 import { getContent } from '@/lib/post/getContent';
 import { extractHeadings } from '@/lib/post/toc';
 import ContentLayout from '@/app/components/post/ContentLayout';
 import MarkdownRenderer from '@/app/components/post/MarkdownRenderer';
 import BackButton from '@/app/components/post/BackButton';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string[] }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getContent('knowledge', slug);
+
+  if (!post) return {};
+
+  const { title, description } = post.data as {
+    title?: string;
+    description?: string;
+  };
+
+  return { title, description };
+}
 
 export default async function KnowledgeDetailPage({
   params,
