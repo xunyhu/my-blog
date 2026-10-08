@@ -14,7 +14,9 @@ status: 'done'
 **Flexbox（弹性盒子）是 CSS 的「一维布局模型」**：让容器内的子项沿**一条轴**灵活地排列、伸缩、对齐，并自动分配剩余空间。它是现代布局最常用的工具，尤其适合导航栏、工具条、卡片行、居中布局等「一维」场景。
 
 ```css
-.container { display: flex; } /* 容器变成弹性盒，直接子项成为「弹性项目」 */
+.container {
+  display: flex;
+} /* 容器变成弹性盒，直接子项成为「弹性项目」 */
 ```
 
 对比传统布局，Flex 的革命性在于：**布局不再依赖浮动和精确宽度计算，而是「声明意图，容器自动分配」。**
@@ -58,12 +60,12 @@ Flex 的一切都围绕两根轴，理解它们是掌握 Flex 的前提：
 ```css
 .container {
   flex-direction: row | row-reverse | column | column-reverse; /* 主轴方向 */
-  flex-wrap: nowrap | wrap | wrap-reverse;  /* 是否换行 */
-  justify-content: flex-start | center | flex-end
-                 | space-between | space-around | space-evenly; /* 主轴分布 */
+  flex-wrap: nowrap | wrap | wrap-reverse; /* 是否换行 */
+  justify-content: flex-start | center | flex-end | space-between | space-around
+    | space-evenly; /* 主轴分布 */
   align-items: stretch | flex-start | center | flex-end | baseline; /* 交叉轴对齐 */
   align-content: /* wrap 多行时，行与行在交叉轴的分布 */;
-  gap: 12px;           /* 项目间距（现代首选，替代 margin hack） */
+  gap: 12px; /* 项目间距（现代首选，替代 margin hack） */
 }
 ```
 
@@ -81,7 +83,7 @@ Flex 的一切都围绕两根轴，理解它们是掌握 Flex 的前提：
 
 ```css
 .item {
-  flex-grow: 0;   /* 有剩余空间时，是否放大及放大比例（默认 0 不放大） */
+  flex-grow: 0; /* 有剩余空间时，是否放大及放大比例（默认 0 不放大） */
   flex-shrink: 1; /* 空间不足时，是否收缩及收缩比例（默认 1 收缩） */
   flex-basis: auto; /* 分配空间前的「初始主尺寸」（默认 auto=按内容） */
 }
@@ -98,10 +100,10 @@ Flex 的一切都围绕两根轴，理解它们是掌握 Flex 的前提：
 ### 4. flex 简写（务必理解其展开）
 
 ```css
-flex: 1;         /* = flex: 1 1 0%   —— 等分剩余空间（最常用） */
-flex: auto;      /* = flex: 1 1 auto —— 先按内容尺寸，再分配剩余 */
-flex: none;      /* = flex: 0 0 auto —— 完全不伸缩（固定尺寸） */
-flex: 0 1 auto;  /* 默认值 */
+flex: 1; /* = flex: 1 1 0%   —— 等分剩余空间（最常用） */
+flex: auto; /* = flex: 1 1 auto —— 先按内容尺寸，再分配剩余 */
+flex: none; /* = flex: 0 0 auto —— 完全不伸缩（固定尺寸） */
+flex: 0 1 auto; /* 默认值 */
 ```
 
 **`flex: 1` 与 `flex: auto` 的关键差异**在 basis：前者 basis=0（无视内容，纯按比例等分），后者 basis=auto（以内容为基准再分剩余）。等分布局用 `flex: 1`，内容自适应用 `flex: auto`。
@@ -109,8 +111,12 @@ flex: 0 1 auto;  /* 默认值 */
 ### 5. align-self 与 order
 
 ```css
-.item { align-self: flex-end; } /* 单个项目覆盖容器的 align-items */
-.item { order: -1; }            /* 调整视觉顺序（越小越靠前，默认 0） */
+.item {
+  align-self: flex-end;
+} /* 单个项目覆盖容器的 align-items */
+.item {
+  order: -1;
+} /* 调整视觉顺序（越小越靠前，默认 0） */
 ```
 
 ## 四、实践：高频布局模式
@@ -121,7 +127,7 @@ flex: 0 1 auto;  /* 默认值 */
 .center-box {
   display: flex;
   justify-content: center; /* 主轴（水平）居中 */
-  align-items: center;     /* 交叉轴（垂直）居中 */
+  align-items: center; /* 交叉轴（垂直）居中 */
   min-height: 100vh;
 }
 ```
@@ -139,21 +145,36 @@ flex: 0 1 auto;  /* 默认值 */
 ### 3. 等分布局（如三列卡片）
 
 ```css
-.row { display: flex; gap: 16px; }
-.row > .col { flex: 1; } /* 三列等分，gap 控制间距 */
+.row {
+  display: flex;
+  gap: 16px;
+}
+.row > .col {
+  flex: 1;
+} /* 三列等分，gap 控制间距 */
 ```
 
 ### 4. 粘性页脚（内容不足时也贴底）
 
 ```css
-.page { display: flex; flex-direction: column; min-height: 100vh; }
-.page > main { flex: 1; } /* main 撑满剩余高度，把 footer 顶到底部 */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.page > main {
+  flex: 1;
+} /* main 撑满剩余高度，把 footer 顶到底部 */
 ```
 
 ### 5. 自动换行的标签墙
 
 ```css
-.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 /* 标签超出自动换行，gap 控制行列间距 */
 ```
 

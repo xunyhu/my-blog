@@ -58,25 +58,40 @@ status: 'done'
 /* ① 根元素 <html> 本身 */
 
 /* ② 定位 + z-index 不为 auto */
-.el { position: relative; z-index: 1; }
+.el {
+  position: relative;
+  z-index: 1;
+}
 
 /* ③ flex/grid 子项 + z-index 不为 auto */
-.flex-child { z-index: 2; }
+.flex-child {
+  z-index: 2;
+}
 
 /* ④ opacity < 1 */
-.el { opacity: 0.99; }
+.el {
+  opacity: 0.99;
+}
 
 /* ⑤ transform / filter / perspective / clip-path 等非 none */
-.el { transform: translateZ(0); }
+.el {
+  transform: translateZ(0);
+}
 
 /* ⑥ position: fixed / sticky */
-.el { position: fixed; }
+.el {
+  position: fixed;
+}
 
 /* ⑦ will-change 指定了会创建上下文的属性 */
-.el { will-change: transform; }
+.el {
+  will-change: transform;
+}
 
 /* ⑧ isolation: isolate（专门用来「凭空」创建上下文） */
-.el { isolation: isolate; }
+.el {
+  isolation: isolate;
+}
 ```
 
 ### 3. 关键规则：z-index 只在同一上下文内比较
@@ -95,8 +110,12 @@ status: 'done'
 
 ```css
 /* ❌ 常见 bug：弹窗被盖住 */
-.modal-parent { transform: translateX(0); } /* 意外创建了层叠上下文！ */
-.modal { z-index: 9999; } /* 仍被外部其他上下文盖住 */
+.modal-parent {
+  transform: translateX(0);
+} /* 意外创建了层叠上下文！ */
+.modal {
+  z-index: 9999;
+} /* 仍被外部其他上下文盖住 */
 
 /* ✅ 修复：让弹窗脱离受限上下文，或调整父级层叠顺序 */
 ```
@@ -109,18 +128,30 @@ status: 'done'
 /* ① 根元素 <html> */
 
 /* ② 浮动元素（float 不为 none） */
-.el { float: left; }
+.el {
+  float: left;
+}
 
 /* ③ 绝对/固定定位 */
-.el { position: absolute; }
+.el {
+  position: absolute;
+}
 
 /* ④ inline-block / flex / grid 容器 */
-.el { display: flow-root; } /* ★ 专门用于创建 BFC 的现代方案，无副作用 */
-.el { display: flex; }
-.el { display: inline-block; }
+.el {
+  display: flow-root;
+} /* ★ 专门用于创建 BFC 的现代方案，无副作用 */
+.el {
+  display: flex;
+}
+.el {
+  display: inline-block;
+}
 
 /* ⑤ overflow 不为 visible */
-.el { overflow: hidden; }  /* 经典（但会裁剪溢出内容） */
+.el {
+  overflow: hidden;
+} /* 经典（但会裁剪溢出内容） */
 ```
 
 > **`display: flow-root`** 是「纯粹为了创建 BFC」而生的属性，没有 `overflow: hidden` 的裁剪副作用，也不影响布局，是现代首选。
@@ -140,24 +171,37 @@ status: 'done'
 
 ```css
 /* 相邻兄弟的上下 margin 会合并，取较大值 */
-.a { margin-bottom: 20px; }
-.b { margin-top: 30px; }   /* 实际间距 = 30px（不是 50px） */
+.a {
+  margin-bottom: 20px;
+}
+.b {
+  margin-top: 30px;
+} /* 实际间距 = 30px（不是 50px） */
 
 /* 把 b 包进一个新 BFC，即可阻止与外部塌陷 */
-.wrapper { display: flow-root; }
+.wrapper {
+  display: flow-root;
+}
 ```
 
 **② 清除浮动（父元素高度塌陷）**——让父元素成为 BFC 以包含浮动子元素：
 
 ```css
-.parent { display: flow-root; } /* 自动包含内部浮动，高度不再塌陷为 0 */
+.parent {
+  display: flow-root;
+} /* 自动包含内部浮动，高度不再塌陷为 0 */
 ```
 
 **③ 阻止元素被浮动覆盖**——BFC 不与 float 重叠，可实现两栏自适应布局：
 
 ```css
-.left  { float: left; width: 100px; }
-.right { display: flow-root; } /* 形成 BFC，自动占据剩余宽度且不与 left 重叠 */
+.left {
+  float: left;
+  width: 100px;
+}
+.right {
+  display: flow-root;
+} /* 形成 BFC，自动占据剩余宽度且不与 left 重叠 */
 ```
 
 ## 四、实践
@@ -166,8 +210,12 @@ status: 'done'
 
 ```css
 /* 用 isolation: isolate 主动隔离一个组件的层叠，防止其 z-index 影响外部 */
-.dropdown-root { isolation: isolate; }
-.dropdown-panel { z-index: 10; } /* 只在 dropdown-root 内部生效 */
+.dropdown-root {
+  isolation: isolate;
+}
+.dropdown-panel {
+  z-index: 10;
+} /* 只在 dropdown-root 内部生效 */
 ```
 
 避免「一个组件的高 z-index 污染全局」，是现代组件化样式的重要实践。
@@ -177,7 +225,9 @@ status: 'done'
 ```css
 /* 过去要用 ::after + clear:both 的 clearfix hack */
 /* 现在一行搞定： */
-.container { display: flow-root; }
+.container {
+  display: flow-root;
+}
 ```
 
 ### 3. 排查 z-index 失效的清单

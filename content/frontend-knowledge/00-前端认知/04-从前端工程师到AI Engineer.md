@@ -55,15 +55,15 @@ status: 'done'
 
 前端工程师转型 AI Engineer，以下能力**开箱即用**：
 
-| 前端已有能力              | 在 AI 应用中的用途                          | 本站对应文章                     |
-| ------------------------- | ------------------------------------------- | -------------------------------- |
-| **TypeScript**            | 定义工具 schema、类型安全地编排 LLM 响应    | `08-TypeScript体系`（尤其类型体操）|
-| **React / 状态管理**      | 构建 Chat UI、管理对话状态与流式增量        | `04-React体系`                   |
-| **Next.js / RSC / BFF**   | 服务端调用 LLM、隐藏密钥、Route Handler 编排 | `04-React体系/09-服务端组件RSC`  |
-| **SSE / 流式响应**        | 实现「打字机」流式输出、中断控制            | `03-浏览器与网络/11-SSE与流式响应`|
-| **API 集成 / fetch**      | 调用 LLM Provider、编排多个后端服务         | `03-浏览器与网络`                |
-| **性能优化**              | 流式渲染、虚拟列表、并发调度                | `04-React体系/07-性能优化`       |
-| **工程化（ESLint/CI）**   | AI 应用的评测流水线、Prompt 版本管理        | `05-工程化`                      |
+| 前端已有能力            | 在 AI 应用中的用途                           | 本站对应文章                        |
+| ----------------------- | -------------------------------------------- | ----------------------------------- |
+| **TypeScript**          | 定义工具 schema、类型安全地编排 LLM 响应     | `08-TypeScript体系`（尤其类型体操） |
+| **React / 状态管理**    | 构建 Chat UI、管理对话状态与流式增量         | `04-React体系`                      |
+| **Next.js / RSC / BFF** | 服务端调用 LLM、隐藏密钥、Route Handler 编排 | `04-React体系/09-服务端组件RSC`     |
+| **SSE / 流式响应**      | 实现「打字机」流式输出、中断控制             | `03-浏览器与网络/11-SSE与流式响应`  |
+| **API 集成 / fetch**    | 调用 LLM Provider、编排多个后端服务          | `03-浏览器与网络`                   |
+| **性能优化**            | 流式渲染、虚拟列表、并发调度                 | `04-React体系/07-性能优化`          |
+| **工程化（ESLint/CI）** | AI 应用的评测流水线、Prompt 版本管理         | `05-工程化`                         |
 
 **特别地**：刚写的《SSE 与流式响应》就是最典型的桥梁——它在前端板块讲「流的技术」，在 AI 板块讲「流的应用」，同一份知识，两端复用。
 
@@ -136,7 +136,10 @@ export async function POST(req: Request) {
     },
   });
   return new Response(stream, {
-    headers: { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache' },
+    headers: {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+    },
   });
 }
 ```
@@ -148,7 +151,8 @@ export function Chat() {
   const [text, setText] = useState('');
   async function send(prompt: string) {
     const res = await fetch('/api/chat', {
-      method: 'POST', body: JSON.stringify({ prompt }),
+      method: 'POST',
+      body: JSON.stringify({ prompt }),
     });
     const reader = res.body!.getReader();
     const decoder = new TextDecoder();

@@ -15,11 +15,11 @@ status: 'done'
 
 ```css
 :root {
-  --primary: #3b82f6;   /* 定义变量 */
+  --primary: #3b82f6; /* 定义变量 */
   --radius: 8px;
 }
 .btn {
-  background: var(--primary);   /* 使用变量 */
+  background: var(--primary); /* 使用变量 */
   border-radius: var(--radius);
 }
 ```
@@ -36,7 +36,10 @@ status: 'done'
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 }
-body { background: var(--background); color: var(--foreground); }
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
 ```
 
 ## 二、为什么
@@ -55,9 +58,15 @@ body { background: var(--background); color: var(--foreground); }
 CSS 变量遵循 DOM 树的**继承**规则：定义在祖先元素上，后代都能访问；后代也可「就近覆盖」。
 
 ```css
-:root { --text: #333; }        /* 全局默认（:root 优先级高于 html） */
-.card { --text: #666; }        /* .card 内覆盖 */
-.card p { color: var(--text); } /* 这里的 --text 是 #666（就近继承） */
+:root {
+  --text: #333;
+} /* 全局默认（:root 优先级高于 html） */
+.card {
+  --text: #666;
+} /* .card 内覆盖 */
+.card p {
+  color: var(--text);
+} /* 这里的 --text 是 #666（就近继承） */
 ```
 
 ```text
@@ -74,8 +83,8 @@ CSS 变量遵循 DOM 树的**继承**规则：定义在祖先元素上，后代�
 
 ```css
 .el {
-  color: var(--brand);              /* 若 --brand 未定义，属性失效（invalid） */
-  color: var(--brand, #3b82f6);     /* 第二参数是回退值：--brand 无效时用 #3b82f6 */
+  color: var(--brand); /* 若 --brand 未定义，属性失效（invalid） */
+  color: var(--brand, #3b82f6); /* 第二参数是回退值：--brand 无效时用 #3b82f6 */
   padding: var(--gap, var(--default-gap, 8px)); /* 回退值可嵌套变量 */
 }
 ```
@@ -100,8 +109,13 @@ CSS 变量遵循 DOM 树的**继承**规则：定义在祖先元素上，后代�
   --card: #1a1a1a;
 }
 /* 所有组件只管用变量，无需关心当前是哪个主题 */
-body { background: var(--bg); color: var(--fg); }
-.card { background: var(--card); }
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+.card {
+  background: var(--card);
+}
 ```
 
 ```text
@@ -118,7 +132,10 @@ body { background: var(--bg); color: var(--fg); }
 
 ```css
 @media (prefers-color-scheme: dark) {
-  :root:not(.light) { --bg: #0a0a0a; --fg: #ededed; }
+  :root:not(.light) {
+    --bg: #0a0a0a;
+    --fg: #ededed;
+  }
 }
 ```
 
@@ -129,9 +146,16 @@ body { background: var(--bg); color: var(--fg); }
 CSS 变量可与 `calc()` 结合，实现「基于一个基准派生一套值」：
 
 ```css
-:root { --base: 16px; --scale: 1.25; }
-h1 { font-size: calc(var(--base) * var(--scale) * var(--scale)); }
-.gap-sm { gap: calc(var(--base) * 0.5); }
+:root {
+  --base: 16px;
+  --scale: 1.25;
+}
+h1 {
+  font-size: calc(var(--base) * var(--scale) * var(--scale));
+}
+.gap-sm {
+  gap: calc(var(--base) * 0.5);
+}
 ```
 
 变量还能被 **JS 运行时读写**，这是动态主题、跟随鼠标的渐变等效果的基础：
@@ -148,8 +172,8 @@ Tailwind CSS v4 采用 **CSS 优先**的配置方式，用 `@theme` 在 CSS 里�
 ```css
 /* Tailwind v4：@theme 定义令牌 → 自动生成工具类 */
 @theme {
-  --color-brand: #3b82f6;   /* → 可用 bg-brand / text-brand */
-  --spacing-lg: 1.5rem;     /* → 可用 p-lg 等 */
+  --color-brand: #3b82f6; /* → 可用 bg-brand / text-brand */
+  --spacing-lg: 1.5rem; /* → 可用 p-lg 等 */
   --font-sans: var(--font-geist-sans);
 }
 @theme inline {
@@ -190,8 +214,13 @@ Tailwind CSS v4 采用 **CSS 优先**的配置方式，用 `@theme` 在 CSS 里�
 ### 2. 组件级变量作用域
 
 ```css
-.btn { --btn-bg: var(--color-primary); background: var(--btn-bg); }
-.btn-danger { --btn-bg: #ef4444; } /* 仅改一个变量即派生出变体 */
+.btn {
+  --btn-bg: var(--color-primary);
+  background: var(--btn-bg);
+}
+.btn-danger {
+  --btn-bg: #ef4444;
+} /* 仅改一个变量即派生出变体 */
 ```
 
 用「局部变量」定义组件的可调点，变体只需覆盖变量，避免重复声明整块样式。

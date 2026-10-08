@@ -25,7 +25,7 @@ status: 'done'
 
 ```css
 /* app/globals.css（本项目真实代码） */
-@import 'tailwindcss';                        /* v4：一行导入，取代旧的 @tailwind base/... */
+@import 'tailwindcss'; /* v4：一行导入，取代旧的 @tailwind base/... */
 @import 'highlight.js/styles/github.css';
 ```
 
@@ -48,8 +48,8 @@ v4 最大的变化是**从 JS 配置转向 CSS 配置**。设计令牌、主题�
 ```css
 /* v4：在 CSS 里用 @theme 定义令牌，自动生成工具类 */
 @theme {
-  --color-brand: #3b82f6;   /* → bg-brand / text-brand / border-brand */
-  --spacing: 0.25rem;       /* 间距基准，p-4 = calc(var(--spacing) * 4) */
+  --color-brand: #3b82f6; /* → bg-brand / text-brand / border-brand */
+  --spacing: 0.25rem; /* 间距基准，p-4 = calc(var(--spacing) * 4) */
 }
 ```
 
@@ -79,12 +79,14 @@ v4 最大的变化是**从 JS 配置转向 CSS 配置**。设计令牌、主题�
 工具类可加**前缀变体**表达「在什么条件下生效」：
 
 ```html
-<div class="
+<div
+  class="
   flex-col md:flex-row        <!-- 响应式：默认纵向，md 起横向 -->
   hover:bg-gray-100           <!-- 悬停态 -->
   focus:ring-2 focus:ring-blue-500  <!-- 聚焦态 -->
   dark:bg-gray-900            <!-- 暗色模式 -->
-">
+"
+></div>
 ```
 
 变体可**堆叠**：`md:hover:dark:bg-*`。响应式前缀（`sm:`/`md:`/`lg:`）对应《响应式与移动端适配》里的断点，且 Tailwind 默认**移动优先**（基础样式=最小屏，前缀=min-width 增强）。
@@ -108,8 +110,13 @@ Tailwind v4 用 CSS 原生的 `@layer` 管理优先级。本项目把 Markdown �
 ```css
 /* 本项目 globals.css */
 @layer utilities {
-  .prose { @apply max-w-full break-words; }
-  .prose p { line-height: 1.75; color: #374151; }
+  .prose {
+    @apply max-w-full break-words;
+  }
+  .prose p {
+    line-height: 1.75;
+    color: #374151;
+  }
   /* … 详见「四、实践」 */
 }
 ```
@@ -129,22 +136,31 @@ Tailwind v4 用 CSS 原生的 `@layer` 管理优先级。本项目把 Markdown �
 ```css
 @layer utilities {
   /* ① 全局兜底：prose 内任何元素不超出容器 */
-  .prose * { max-width: 100%; }
-  .prose { @apply max-w-full break-words; }  /* 长单词强制断行 */
+  .prose * {
+    max-width: 100%;
+  }
+  .prose {
+    @apply max-w-full break-words;
+  } /* 长单词强制断行 */
 
   /* ② 代码块：横向滚动而非撑破 */
   .prose pre {
     max-width: 100%;
-    overflow-x: auto;      /* 长代码横向滚动 */
+    overflow-x: auto; /* 长代码横向滚动 */
     border-radius: 10px;
   }
-  .prose pre code { white-space: pre; } /* 保持代码格式不折行 */
+  .prose pre code {
+    white-space: pre;
+  } /* 保持代码格式不折行 */
 
   /* ③ 表格：包一层可滚动容器 */
-  .prose .table-wrapper { width: 100%; overflow-x: auto; }
+  .prose .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
   .prose table {
-    width: max-content;  /* 关键：让内容决定宽度 */
-    min-width: 100%;     /* 至少占满容器 */
+    width: max-content; /* 关键：让内容决定宽度 */
+    min-width: 100%; /* 至少占满容器 */
   }
 }
 ```
@@ -165,10 +181,26 @@ Tailwind v4 用 CSS 原生的 `@layer` 管理优先级。本项目把 Markdown �
 
 ```css
 @layer utilities {
-  .prose h1 { font-size: 2.25rem; border-bottom: 2px solid #e5e7eb; /* … */ }
-  .prose code { /* 行内代码 */ background: #ececec; padding: 0.2rem 0.4rem; border-radius: 4px; }
-  .prose a { color: #3b82f6; word-break: break-all; } /* 长链接强制断开 */
-  .prose img { display: block; margin: 1rem auto; max-width: 100%; height: auto; }
+  .prose h1 {
+    font-size: 2.25rem;
+    border-bottom: 2px solid #e5e7eb; /* … */
+  }
+  .prose code {
+    /* 行内代码 */
+    background: #ececec;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+  }
+  .prose a {
+    color: #3b82f6;
+    word-break: break-all;
+  } /* 长链接强制断开 */
+  .prose img {
+    display: block;
+    margin: 1rem auto;
+    max-width: 100%;
+    height: auto;
+  }
 }
 ```
 
@@ -177,7 +209,9 @@ Tailwind v4 用 CSS 原生的 `@layer` 管理优先级。本项目把 Markdown �
 ### 3. 全局防横向滚动
 
 ```css
-body { overflow-x: hidden; } /* 兜底：即便有元素溢出也不产生整页横向滚动条 */
+body {
+  overflow-x: hidden;
+} /* 兜底：即便有元素溢出也不产生整页横向滚动条 */
 ```
 
 本项目在 `body` 上加了这道「最终保险」，配合上述局部处理，双管齐下杜绝移动端横向滚动。

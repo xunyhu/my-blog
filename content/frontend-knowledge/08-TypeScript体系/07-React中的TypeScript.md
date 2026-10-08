@@ -39,7 +39,9 @@ export default function MarkdownRenderer({ content }: { content: string }) {
 
 ```tsx
 // 方式 A：内联对象类型（props 少时最简洁，本项目 MarkdownRenderer/TagFilter 用此法）
-function TagFilter({ tags, category }: { tags: Tag[]; category?: string }) { /* … */ }
+function TagFilter({ tags, category }: { tags: Tag[]; category?: string }) {
+  /* … */
+}
 
 // 方式 B：interface（props 多、需继承/复用时首选）
 interface PostCardProps {
@@ -47,10 +49,14 @@ interface PostCardProps {
   date: number;
   tags?: Tag[];
 }
-function PostCard(props: PostCardProps) { /* … */ }
+function PostCard(props: PostCardProps) {
+  /* … */
+}
 
 // 方式 C：type（需要联合/工具类型时）
-type ButtonProps = { label: string } & React.ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonProps = {
+  label: string;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 ```
 
 **选型**：props 少用内联；props 多或要复用/继承用 `interface`（见《接口与类型别名》）。
@@ -65,7 +71,12 @@ const Card: React.FC<CardProps> = ({ title }) => <div>{title}</div>;
 
 // ✅ 推荐：直接标注 props，children 显式声明
 function Card({ title, children }: CardProps) {
-  return <div>{title}{children}</div>;
+  return (
+    <div>
+      {title}
+      {children}
+    </div>
+  );
 }
 ```
 
@@ -79,11 +90,16 @@ React 18 起 `React.FC` 已移除隐式 `children`；直接写函数 + 标注 pr
 import type { ReactNode } from 'react';
 
 interface LayoutProps {
-  children: ReactNode;       // 通用容器
+  children: ReactNode; // 通用容器
   title?: string;
 }
 function Layout({ children, title }: LayoutProps) {
-  return <main><h1>{title}</h1>{children}</main>;
+  return (
+    <main>
+      <h1>{title}</h1>
+      {children}
+    </main>
+  );
 }
 ```
 
@@ -109,7 +125,9 @@ function SearchForm() {
     e.preventDefault();
   }
   // 点击：MouseEvent<HTMLButtonElement>
-  function handleClick(e: MouseEvent<HTMLButtonElement>) { /* … */ }
+  function handleClick(e: MouseEvent<HTMLButtonElement>) {
+    /* … */
+  }
 
   return <form onSubmit={handleSubmit}>{/* … */}</form>;
 }
@@ -134,16 +152,18 @@ function SearchForm() {
 
 ```tsx
 // useState：能推导初值就别标注
-const [count, setCount] = useState(0);            // useState<number>，自动推导
+const [count, setCount] = useState(0); // useState<number>，自动推导
 // 初值为 null/undefined、或需要联合类型时，显式传泛型
 const [user, setUser] = useState<User | null>(null); // useState<User | null>
 
 // useRef：区分「DOM 引用」与「可变值容器」
-const inputRef = useRef<HTMLInputElement>(null);   // ref.current 可为 null（挂 DOM）
+const inputRef = useRef<HTMLInputElement>(null); // ref.current 可为 null（挂 DOM）
 const timerRef = useRef<number | undefined>(undefined); // 存普通值
 
 // useEffect / useCallback / useMemo：靠回调与依赖推导，一般无需标注
-useEffect(() => { /* … */ }, [count]);
+useEffect(() => {
+  /* … */
+}, [count]);
 ```
 
 `useRef<HTMLInputElement>(null)` 是访问 DOM 的标准写法，配合 `<input ref={inputRef} />` 获得类型安全的 `inputRef.current`。
@@ -159,11 +179,17 @@ interface ListProps<T> {
 }
 // 泛型组件：T 由传入的 items 推导
 function List<T>({ items, renderItem }: ListProps<T>) {
-  return <ul>{items.map((item, i) => <li key={i}>{renderItem(item)}</li>)}</ul>;
+  return (
+    <ul>
+      {items.map((item, i) => (
+        <li key={i}>{renderItem(item)}</li>
+      ))}
+    </ul>
+  );
 }
 
 // 使用：T 自动推导为 User，renderItem 的 item 就是 User
-<List items={users} renderItem={(u) => <span>{u.name}</span>} />
+<List items={users} renderItem={(u) => <span>{u.name}</span>} />;
 ```
 
 注意：泛型箭头函数在 `.tsx` 中要写 `<T,>`（避免与 JSX 标签歧义），或直接用 `function` 声明规避。
@@ -216,7 +242,10 @@ function useTheme() {
 // 本项目的 props 复用模式：组件从 types 导入共享类型
 import type { Tag } from '@/types/blog';
 
-interface Props { tags: Tag[]; currentTag?: string; }
+interface Props {
+  tags: Tag[];
+  currentTag?: string;
+}
 ```
 
 ## 五、常见误区

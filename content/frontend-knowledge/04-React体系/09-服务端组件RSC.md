@@ -15,11 +15,11 @@ status: 'done'
 
 它自 React 19 起正式 stable，在 Next.js App Router 中作为默认渲染模型落地。理解 RSC 的关键，是先把它和三个容易混淆的概念区分开：
 
-| 概念              | 运行位置          | 产物                      | 解决的问题                     |
-| ----------------- | ----------------- | ------------------------- | ------------------------------ |
-| **CSR**（客户端渲染） | 浏览器            | HTML（空壳）+ JS          | 交互丰富，但首屏慢、SEO 差     |
-| **SSR**（服务端渲染） | 服务端（每次请求）| HTML 字符串               | 首屏快、SEO 好，但组件 JS 仍全量下发 |
-| **RSC**（服务端组件） | 服务端            | **Flight Payload**（非 HTML、非 JS）| 组件代码零下发、可直接访问后端资源 |
+| 概念                  | 运行位置           | 产物                                 | 解决的问题                           |
+| --------------------- | ------------------ | ------------------------------------ | ------------------------------------ |
+| **CSR**（客户端渲染） | 浏览器             | HTML（空壳）+ JS                     | 交互丰富，但首屏慢、SEO 差           |
+| **SSR**（服务端渲染） | 服务端（每次请求） | HTML 字符串                          | 首屏快、SEO 好，但组件 JS 仍全量下发 |
+| **RSC**（服务端组件） | 服务端             | **Flight Payload**（非 HTML、非 JS） | 组件代码零下发、可直接访问后端资源   |
 
 > 一句话：**SSR 解决「首屏 HTML 从哪来」，RSC 解决「组件 JS 要不要下发」。** 二者不是替代关系，而是叠加协作——RSC 负责在服务端把大部分组件「消化」掉，SSR/流式负责把结果尽早送到浏览器。
 
@@ -124,15 +124,15 @@ RSC Payload 是**流式**下发的：服务端不必等整棵树算完，可以�
 
 `'use client'` **不是「把一个组件变成客户端组件」的开关，而是声明一条「服务端/客户端边界」**：从该文件起，它及其所有子依赖都进入客户端 bundle，直到遇到下一个边界。
 
-| 能力                       | Server Component | Client Component |
-| -------------------------- | :--------------: | :--------------: |
-| `async` / `await` 数据获取 |        ✅        |        ❌        |
-| 直接读 DB / 文件系统 / 密钥 |        ✅        |        ❌        |
-| `useState` / `useReducer`  |        ❌        |        ✅        |
-| `useEffect` / `useLayoutEffect` |   ❌        |        ✅        |
-| 事件处理（`onClick` 等）   |        ❌        |        ✅        |
-| 浏览器 API（`window` 等）  |        ❌        |        ✅        |
-| Context（`useContext`）    |        ❌        |        ✅        |
+| 能力                            | Server Component | Client Component |
+| ------------------------------- | :--------------: | :--------------: |
+| `async` / `await` 数据获取      |        ✅        |        ❌        |
+| 直接读 DB / 文件系统 / 密钥     |        ✅        |        ❌        |
+| `useState` / `useReducer`       |        ❌        |        ✅        |
+| `useEffect` / `useLayoutEffect` |        ❌        |        ✅        |
+| 事件处理（`onClick` 等）        |        ❌        |        ✅        |
+| 浏览器 API（`window` 等）       |        ❌        |        ✅        |
+| Context（`useContext`）         |        ❌        |        ✅        |
 
 **导入方向规则（最易错）：**
 
@@ -143,13 +143,13 @@ RSC Payload 是**流式**下发的：服务端不必等整棵树算完，可以�
 ```tsx
 // ✅ 正确：Server 包裹 Client，把服务端组件作为 children 传下去
 // app/.../page.tsx（Server Component，无 'use client'）
-import ClientTabs from './ClientTabs';       // 'use client'
-import ServerFetchedPanel from './Panel';    // Server Component
+import ClientTabs from './ClientTabs'; // 'use client'
+import ServerFetchedPanel from './Panel'; // Server Component
 
 export default function Page() {
   return (
     <ClientTabs>
-      <ServerFetchedPanel />  {/* 作为 children 穿过边界，合法 */}
+      <ServerFetchedPanel /> {/* 作为 children 穿过边界，合法 */}
     </ClientTabs>
   );
 }
@@ -175,8 +175,8 @@ import { revalidatePath } from 'next/cache';
 
 export async function createComment(formData: FormData) {
   const text = formData.get('text') as string;
-  await db.comment.insert({ text });      // 直接访问数据库
-  revalidatePath('/post/1');              // 变更后让相关路由失效、重新取数
+  await db.comment.insert({ text }); // 直接访问数据库
+  revalidatePath('/post/1'); // 变更后让相关路由失效、重新取数
 }
 ```
 
@@ -204,24 +204,38 @@ Next.js 16 进一步细化了变更后的缓存刷新语义：`updateTag()`（Se
 ```tsx
 import type { Metadata } from 'next';
 import { getContent } from '@/lib/post/getContent'; // 内部 fs.readFileSync
-import ContentLayout from '@/app/components/post/ContentLayout';   // 'use client'
+import ContentLayout from '@/app/components/post/ContentLayout'; // 'use client'
 import MarkdownRenderer from '@/app/components/post/MarkdownRenderer'; // 'use client'
 
 // generateMetadata 只在服务端执行，天然可用 fs
-export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
-  const { slug } = await params;              // Next.js 16：params 为 Promise，必须 await
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string[] }>;
+}): Promise<Metadata> {
+  const { slug } = await params; // Next.js 16：params 为 Promise，必须 await
   const post = getContent('knowledge', slug); // 直接读文件系统
   if (!post) return {};
-  const { title, description } = post.data as { title?: string; description?: string };
+  const { title, description } = post.data as {
+    title?: string;
+    description?: string;
+  };
   return { title, description };
 }
 
-export default async function KnowledgeDetailPage({ params }: { params: Promise<{ slug: string[] }> }) {
+export default async function KnowledgeDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string[] }>;
+}) {
   const { slug } = await params;
   const post = getContent('knowledge', slug);
   if (!post) return <div className="p-10">404 Not Found</div>;
   return (
-    <ContentLayout content={post.content} headings={extractHeadings(post.content)}>
+    <ContentLayout
+      content={post.content}
+      headings={extractHeadings(post.content)}
+    >
       <MarkdownRenderer content={post.content} />
     </ContentLayout>
   );

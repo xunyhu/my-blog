@@ -17,7 +17,7 @@ status: 'done'
 .container {
   display: grid;
   grid-template-columns: 200px 1fr 1fr; /* 三列：固定 + 两个弹性 */
-  gap: 16px;                            /* 行列间距 */
+  gap: 16px; /* 行列间距 */
 }
 ```
 
@@ -51,8 +51,8 @@ status: 'done'
 .grid {
   display: grid;
   grid-template-columns: 200px 1fr 2fr; /* 列轨道：3 列 */
-  grid-template-rows: 60px 1fr auto;    /* 行轨道：3 行 */
-  gap: 12px;                             /* = row-gap + column-gap */
+  grid-template-rows: 60px 1fr auto; /* 行轨道：3 行 */
+  gap: 12px; /* = row-gap + column-gap */
 }
 ```
 
@@ -77,15 +77,15 @@ status: 'done'
 ```css
 .grid {
   grid-template-columns: repeat(3, 1fr); /* 显式：3 列 */
-  grid-auto-rows: 120px;                 /* 隐式新增行的高度 */
+  grid-auto-rows: 120px; /* 隐式新增行的高度 */
 }
 ```
 
 ### 3. repeat()：轨道的批量定义
 
 ```css
-grid-template-columns: repeat(3, 1fr);        /* = 1fr 1fr 1fr */
-grid-template-columns: repeat(2, 100px 1fr);  /* = 100px 1fr 100px 1fr */
+grid-template-columns: repeat(3, 1fr); /* = 1fr 1fr 1fr */
+grid-template-columns: repeat(2, 100px 1fr); /* = 100px 1fr 100px 1fr */
 ```
 
 ### 4. grid-template-areas：可视化命名布局
@@ -98,15 +98,23 @@ grid-template-columns: repeat(2, 100px 1fr);  /* = 100px 1fr 100px 1fr */
   grid-template-columns: 200px 1fr;
   grid-template-rows: 60px 1fr 40px;
   grid-template-areas:
-    "header header"
-    "sidebar main"
-    "footer footer";
+    'header header'
+    'sidebar main'
+    'footer footer';
   gap: 8px;
 }
-.header  { grid-area: header; }
-.sidebar { grid-area: sidebar; }
-.main    { grid-area: main; }
-.footer  { grid-area: footer; }
+.header {
+  grid-area: header;
+}
+.sidebar {
+  grid-area: sidebar;
+}
+.main {
+  grid-area: main;
+}
+.footer {
+  grid-area: footer;
+}
 ```
 
 ```text
@@ -122,10 +130,12 @@ grid-template-columns: repeat(2, 100px 1fr);  /* = 100px 1fr 100px 1fr */
 
 ```css
 .item {
-  grid-column: 1 / 3;   /* 从第 1 条列线跨到第 3 条（占 2 列） */
-  grid-row: 2 / 4;      /* 从第 2 条行线跨到第 4 条（占 2 行） */
+  grid-column: 1 / 3; /* 从第 1 条列线跨到第 3 条（占 2 列） */
+  grid-row: 2 / 4; /* 从第 2 条行线跨到第 4 条（占 2 行） */
 }
-.item2 { grid-column: span 2; } /* 跨 2 列（简写） */
+.item2 {
+  grid-column: span 2;
+} /* 跨 2 列（简写） */
 ```
 
 ```text
@@ -168,9 +178,18 @@ body {
 ### 3. Grid + Flex 组合
 
 ```css
-.card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.card { display: flex; flex-direction: column; } /* 卡片内部用 Flex 排列 */
-.card .footer { margin-top: auto; } /* Flex 把底部推到卡片底端，等高对齐 */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+} /* 卡片内部用 Flex 排列 */
+.card .footer {
+  margin-top: auto;
+} /* Flex 把底部推到卡片底端，等高对齐 */
 ```
 
 **Grid 排卡片矩阵，Flex 排卡片内部**——这是最经典的组合拳。

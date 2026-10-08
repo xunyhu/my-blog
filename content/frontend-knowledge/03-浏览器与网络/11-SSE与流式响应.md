@@ -79,13 +79,17 @@ retry: 3000\n                    ← 可选：重连间隔（毫秒）
 ```js
 const es = new EventSource('/api/stream');
 
-es.onmessage = (e) => {          // 接收默认 message 事件
+es.onmessage = (e) => {
+  // 接收默认 message 事件
   console.log(e.data);
 };
-es.addEventListener('token', (e) => {  // 接收自定义 event: token
+es.addEventListener('token', (e) => {
+  // 接收自定义 event: token
   render(JSON.parse(e.data).delta);
 });
-es.onerror = () => { /* 浏览器会自动重连，一般无需手动处理 */ };
+es.onerror = () => {
+  /* 浏览器会自动重连，一般无需手动处理 */
+};
 
 // 主动关闭
 es.close();
@@ -104,14 +108,14 @@ const res = await fetch('/api/chat', {
   body: JSON.stringify({ prompt }),
 });
 
-const reader = res.body.getReader();     // 拿到流读取器
+const reader = res.body.getReader(); // 拿到流读取器
 const decoder = new TextDecoder('utf-8');
 
 while (true) {
   const { done, value } = await reader.read(); // 逐块读取
   if (done) break;
   const chunk = decoder.decode(value, { stream: true });
-  appendToUI(chunk);                     // 边收边渲染 → 打字机效果
+  appendToUI(chunk); // 边收边渲染 → 打字机效果
 }
 ```
 
@@ -175,13 +179,16 @@ export async function POST(req: Request) {
 
 ```ts
 // 直接把上游 LLM 的流转给前端（pipe）
-const llmStream = await openai.chat.completions.create({ stream: true, /* … */ });
+const llmStream = await openai.chat.completions.create({
+  stream: true /* … */,
+});
 return new Response(llmStream.toReadable(), {
   headers: { 'Content-Type': 'text/event-stream' },
 });
 ```
 
 **要点**：
+
 - 响应头必须设 `Content-Type: text/event-stream`；
 - 关掉缓冲（`Cache-Control: no-cache`），确保数据即时下发；
 - 部署时注意反向代理（如 Nginx）需关闭对该路由的响应缓冲，否则流会被「攒着」一次性吐出。

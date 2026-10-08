@@ -55,7 +55,9 @@ status: 'done'
 <link rel="stylesheet" href="desktop.css" media="(min-width:1024px)" />
 
 <!-- ② 关键 CSS 内联：首屏样式直接内联，省一次请求 -->
-<style>/* 首屏关键样式 */</style>
+<style>
+  /* 首屏关键样式 */
+</style>
 
 <!-- ③ 预加载关键字体/CSS -->
 <link rel="preload" href="main.css" as="style" />
@@ -89,12 +91,22 @@ status: 'done'
 
 ```css
 /* ❌ 动画 left：每帧都触发 Layout（重排），卡 */
-.box-bad { position: absolute; left: 0; transition: left 0.3s; }
-.box-bad:hover { left: 100px; }
+.box-bad {
+  position: absolute;
+  left: 0;
+  transition: left 0.3s;
+}
+.box-bad:hover {
+  left: 100px;
+}
 
 /* ✅ 动画 transform：只触发 Composite，GPU 加速，流畅 */
-.box-good { transition: transform 0.3s; }
-.box-good:hover { transform: translateX(100px); }
+.box-good {
+  transition: transform 0.3s;
+}
+.box-good:hover {
+  transform: translateX(100px);
+}
 ```
 
 ```text
@@ -107,7 +119,9 @@ status: 'done'
 `will-change` 提示浏览器**提前为元素创建合成层**，避免动画开始时的临时提升开销：
 
 ```css
-.el { will-change: transform; } /* 提前准备，动画更顺滑 */
+.el {
+  will-change: transform;
+} /* 提前准备，动画更顺滑 */
 ```
 
 ⚠️ **慎用**：每个合成层都占内存，滥用 `will-change`（尤其加在大量元素或 `will-change: auto`）会导致内存暴涨、反而变卡。**用完可移除**，且应加在「真的要频繁变化」的少数元素上。
@@ -116,12 +130,14 @@ status: 'done'
 
 ```css
 /* contain：声明元素的「隔离边界」，其内部变化不影响外部布局/绘制 */
-.widget { contain: layout paint; }  /* 布局与绘制被隔离在此 */
+.widget {
+  contain: layout paint;
+} /* 布局与绘制被隔离在此 */
 
 /* content-visibility：跳过屏幕外内容的渲染，长列表首屏加速利器 */
 .long-list-item {
-  content-visibility: auto;          /* 不在视口内时跳过渲染 */
-  contain-intrinsic-size: 200px;     /* 占位高度，避免滚动条跳动 */
+  content-visibility: auto; /* 不在视口内时跳过渲染 */
+  contain-intrinsic-size: 200px; /* 占位高度，避免滚动条跳动 */
 }
 ```
 
@@ -145,7 +161,9 @@ els.forEach((el) => {
 
 // ✅ 读写分离：先批量读，再批量写
 const widths = els.map((el) => el.offsetWidth); // 阶段一：全部读完
-els.forEach((el, i) => { el.style.width = widths[i] + 10 + 'px'; }); // 阶段二：全部写
+els.forEach((el, i) => {
+  el.style.width = widths[i] + 10 + 'px';
+}); // 阶段二：全部写
 ```
 
 ```text
