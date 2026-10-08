@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: app_pages/blog_route
+title: 博客列表与文章详情页
+scope:
+    - app/blog/
+    - app/components/blog/
+source_files: []
+depends_on: []
+related_to:
+    - path: app_pages/shared_ui
+    - path: lib_utils

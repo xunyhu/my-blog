@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: app_pages/app_shell
+title: Next.js App Shell 与首页
+scope:
+    - app/layout.tsx
+    - app/page.tsx
+    - app/globals.css
+    - types/
+source_files: []
+depends_on: []
+related_to:
+    - path: lib_utils

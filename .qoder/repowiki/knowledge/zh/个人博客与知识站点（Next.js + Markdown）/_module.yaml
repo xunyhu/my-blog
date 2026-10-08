@@ -1,0 +1,19 @@
+schema_version: 1
+module_path: ""
+title: 个人博客与知识站点（Next.js + Markdown）
+scope:
+    - README.md
+    - .gitignore
+    - .prettierignore
+    - .prettierrc
+    - eslint.config.mjs
+    - next.config.ts
+    - package.json
+    - package-lock.json
+    - postcss.config.mjs
+    - tailwind.config.js
+    - tsconfig.json
+    - .nvmrc
+source_files: []
+depends_on: []
+related_to: []

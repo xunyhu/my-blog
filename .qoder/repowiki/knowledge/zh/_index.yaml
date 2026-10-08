@@ -1,0 +1,124 @@
+# 知识卡导出索引文件
+schema_version: 1
+locale: zh-CN
+branch: master
+nodes_managed: true
+exported_at: "2026-10-08T14:35:15Z"
+modules:
+    "":
+        dir_name: 个人博客与知识站点（Next.js + Markdown）
+        title: 个人博客与知识站点（Next.js + Markdown）
+        scope:
+            - README.md
+            - .gitignore
+            - .prettierignore
+            - .prettierrc
+            - eslint.config.mjs
+            - next.config.ts
+            - package.json
+            - package-lock.json
+            - postcss.config.mjs
+            - tailwind.config.js
+            - tsconfig.json
+            - .nvmrc
+        source_files: []
+        children:
+            - app_pages
+            - build_scripts
+            - content_knowledge_base
+            - lib_utils
+        depends_on: []
+        related_to: []
+    app_pages:
+        dir_name: Next.js App Router 前端站点
+        title: Next.js App Router 前端站点
+        scope:
+            - app/
+            - types/
+        source_files: []
+        children:
+            - app_pages/app_shell
+            - app_pages/blog_route
+            - app_pages/post_route
+            - app_pages/shared_ui
+        depends_on: []
+        related_to: []
+    app_pages/app_shell:
+        dir_name: Next.js App Shell 与首页
+        title: Next.js App Shell 与首页
+        scope:
+            - app/layout.tsx
+            - app/page.tsx
+            - app/globals.css
+            - types/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: lib_utils
+    app_pages/blog_route:
+        dir_name: 博客列表与文章详情页
+        title: 博客列表与文章详情页
+        scope:
+            - app/blog/
+            - app/components/blog/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: app_pages/shared_ui
+            - path: lib_utils
+    app_pages/post_route:
+        dir_name: 文章页面展示组件
+        title: 文章页面展示组件
+        scope:
+            - app/components/post/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: app_pages/shared_ui
+    app_pages/shared_ui:
+        dir_name: 博客共享 UI 组件与 Hook
+        title: 博客共享 UI 组件与 Hook
+        scope:
+            - app/components/
+            - app/hooks/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: app_pages/blog_route
+            - path: app_pages/post_route
+    build_scripts:
+        dir_name: 知识库骨架与 Frontmatter 生成脚本
+        title: 知识库骨架与 Frontmatter 生成脚本
+        scope:
+            - scripts/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: content_knowledge_base
+    content_knowledge_base:
+        dir_name: 内容知识库（前端与AI工程知识文档）
+        title: 内容知识库（前端与AI工程知识文档）
+        scope:
+            - content/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: build_scripts
+    lib_utils:
+        dir_name: 博客内容构建与导航工具库
+        title: 博客内容构建与导航工具库
+        scope:
+            - lib/
+            - config/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: app_pages/app_shell
+            - path: app_pages/blog_route

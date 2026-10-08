@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: lib_utils
+title: 博客内容构建与导航工具库
+scope:
+    - lib/
+    - config/
+source_files: []
+depends_on: []
+related_to:
+    - path: app_pages/app_shell
+    - path: app_pages/blog_route

@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: app_pages/shared_ui
+title: 博客共享 UI 组件与 Hook
+scope:
+    - app/components/
+    - app/hooks/
+source_files: []
+depends_on: []
+related_to:
+    - path: app_pages/blog_route
+    - path: app_pages/post_route
