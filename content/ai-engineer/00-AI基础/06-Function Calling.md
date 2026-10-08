@@ -109,18 +109,20 @@ Function Calling 让模型在「回答」和「请求调用工具」之间做选
 
 ```typescript
 // ① 定义可用工具
-const tools = [{
-  type: 'function',
-  function: {
-    name: 'get_weather',
-    description: '查询指定城市的当前天气',
-    parameters: {
-      type: 'object',
-      properties: { city: { type: 'string' } },
-      required: ['city'],
+const tools = [
+  {
+    type: 'function',
+    function: {
+      name: 'get_weather',
+      description: '查询指定城市的当前天气',
+      parameters: {
+        type: 'object',
+        properties: { city: { type: 'string' } },
+        required: ['city'],
+      },
     },
   },
-}];
+];
 
 // ② 发送请求（带 tools）
 const resp = await openai.chat.completions.create({
@@ -135,18 +137,18 @@ if (call) {
   const args = JSON.parse(call.function.arguments); // { city: '北京' }
 
   // ④ 你的代码真正执行函数
-  const result = await getWeather(args.city);       // → '晴，18℃'
+  const result = await getWeather(args.city); // → '晴，18℃'
 
   // ⑤ 把结果回传，让模型生成自然语言回答
   const final = await openai.chat.completions.create({
     model: 'gpt-4o',
     messages: [
       { role: 'user', content: '北京天气怎么样？' },
-      resp.choices[0].message,                       // 模型的调用请求
+      resp.choices[0].message, // 模型的调用请求
       { role: 'tool', tool_call_id: call.id, content: result },
     ],
   });
-  console.log(final.choices[0].message.content);     // "北京今天晴，18℃…"
+  console.log(final.choices[0].message.content); // "北京今天晴，18℃…"
 }
 ```
 
@@ -157,7 +159,9 @@ if (call) {
 ```typescript
 // 用 TS 类型约束工具参数，避免运行时错误
 type WeatherArgs = { city: string; unit?: 'celsius' | 'fahrenheit' };
-function getWeather(args: WeatherArgs): Promise<string> { /* … */ }
+function getWeather(args: WeatherArgs): Promise<string> {
+  /* … */
+}
 ```
 
 ## 五、常见误区

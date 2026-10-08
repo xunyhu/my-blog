@@ -80,14 +80,14 @@ Workflow 由开发者用代码/配置**显式定义**每一步与分支条件，
 
 这是本篇的核心辨析：
 
-| 维度       | AI Workflow                    | Agent                            |
-| ---------- | ------------------------------ | -------------------------------- |
-| 流程决定者 | **开发者预先编排**             | **模型运行时自主决定**           |
-| 确定性     | 高（可复现、可预测）           | 低（路径不定）                   |
-| 灵活性     | 低（只走预设路径）             | 高（可临场应变）                 |
-| 可控/可测  | 强                             | 弱（需额外护栏与追踪）           |
-| 适用场景   | 流程固定、步骤明确的任务       | 开放式、需自主探索的任务         |
-| 成本       | 通常更低、更可预测             | 可能多轮调用、成本不确定         |
+| 维度       | AI Workflow              | Agent                    |
+| ---------- | ------------------------ | ------------------------ |
+| 流程决定者 | **开发者预先编排**       | **模型运行时自主决定**   |
+| 确定性     | 高（可复现、可预测）     | 低（路径不定）           |
+| 灵活性     | 低（只走预设路径）       | 高（可临场应变）         |
+| 可控/可测  | 强                       | 弱（需额外护栏与追踪）   |
+| 适用场景   | 流程固定、步骤明确的任务 | 开放式、需自主探索的任务 |
+| 成本       | 通常更低、更可预测       | 可能多轮调用、成本不确定 |
 
 ```text
    选型光谱（从确定到自主）：
@@ -106,8 +106,8 @@ Workflow 由开发者用代码/配置**显式定义**每一步与分支条件，
 ```typescript
 // 把「写一篇技术博客」拆成有序步骤，每步专注一件事
 async function writeBlog(topic: string): Promise<string> {
-  const outline = await llm(`为「${topic}」列一份技术博客大纲`);        // 步骤1：大纲
-  const draft = await llm(`根据大纲写正文：\n${outline}`);              // 步骤2：正文
+  const outline = await llm(`为「${topic}」列一份技术博客大纲`); // 步骤1：大纲
+  const draft = await llm(`根据大纲写正文：\n${outline}`); // 步骤2：正文
   const polished = await llm(`校对并润色以下内容，修正术语：\n${draft}`); // 步骤3：润色
   return polished;
 }
@@ -119,10 +119,15 @@ async function writeBlog(topic: string): Promise<string> {
 ```typescript
 async function route(userInput: string): Promise<string> {
   const intent = await classify(userInput); // 先分类：'billing' | 'tech' | 'other'
-  switch (intent) {                          // 按意图路由到不同 prompt（分支预设）
-    case 'billing': return await llm(BILLING_PROMPT + userInput);
-    case 'tech':    return await llm(TECH_PROMPT + userInput);
-    default:        return await llm(GENERAL_PROMPT + userInput);
+  switch (
+    intent // 按意图路由到不同 prompt（分支预设）
+  ) {
+    case 'billing':
+      return await llm(BILLING_PROMPT + userInput);
+    case 'tech':
+      return await llm(TECH_PROMPT + userInput);
+    default:
+      return await llm(GENERAL_PROMPT + userInput);
   }
 }
 ```

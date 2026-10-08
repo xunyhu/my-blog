@@ -108,9 +108,13 @@ async function embed(text: string): Promise<number[]> {
 
 // 余弦相似度
 function cosine(a: number[], b: number[]): number {
-  let dot = 0, na = 0, nb = 0;
+  let dot = 0,
+    na = 0,
+    nb = 0;
   for (let i = 0; i < a.length; i++) {
-    dot += a[i] * b[i]; na += a[i] ** 2; nb += b[i] ** 2;
+    dot += a[i] * b[i];
+    na += a[i] ** 2;
+    nb += b[i] ** 2;
   }
   return dot / (Math.sqrt(na) * Math.sqrt(nb));
 }

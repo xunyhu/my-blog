@@ -115,7 +115,7 @@ async function runAgent(goal: string, tools: Tool[]) {
     if (resp.toolCalls) {
       for (const call of resp.toolCalls) {
         const result = await executeTool(call.name, call.args); // ③ 执行
-        memory.push({ role: 'tool', content: result });          // ④ 观察结果入记忆
+        memory.push({ role: 'tool', content: result }); // ④ 观察结果入记忆
       }
       continue; // 回到循环，让 LLM 根据新观察再决策
     }
